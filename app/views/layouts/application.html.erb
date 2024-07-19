@@ -18,33 +18,33 @@
 
   <body>
       <header class="pure-menu pure-menu-horizontal header pure-u-1">
-        <a class="pure-menu-heading" id="title" href="/page/1">
+        <a class="pure-menu-heading" id="title" href="/">
         <img src="/images/laurels.png" id="title-icon"> Nguyen Streak</a>
 
         <nav>
-        <menu class="pure-menu-list">
-          <li class="pure-menu-item"><a href="/page/1" class="pure-menu-link">Home</a></li>
-          <li class="pure-menu-item"><a href="/about" class="pure-menu-link">About</a></li>
+          <menu class="pure-menu-list">
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="/about" class="pure-menu-link">About</a></li>
           
-          <% if session[:user_id] %>
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover";">
-              <a href="#" id="menuLink1" class="pure-menu-link">
-                <img src="/images/profile-icon.png" id="profile-img"><%= session[:username] %>
-              </a>
-              <menu class="pure-menu-children">
-                <li class="pure-menu-item">
-                  <a href="/my_account" class="pure-menu-link">My account</a>
-                </li>
-                <li class="pure-menu-item">
-                  <form onsubmit="return confirm('Are you sure you want to sign out?');" method="post" action="/sign_out">
+            <% if session[:user_id] %>
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover";">
+                <a href="#" id="menuLink1" class="pure-menu-link">
+                  <img src="/images/profile-icon.png" id="profile-img"><%= session[:username] %>
+                </a>
+                <menu class="pure-menu-children">
+                  <li class="pure-menu-item">
+                    <a href="/my_account" class="pure-menu-link">My account</a>
+                  </li>
+                  <li class="pure-menu-item">
+                    <form onsubmit="return confirm('Are you sure you want to sign out?');" method="post" action="/sign_out">
                     <button type="submit" id="sign-out-btn">Sign out</button>
-                  </form>
-                </li>
-              </menu>
-            </li>
-          <% else %>
-            <li class="pure-menu-item"><a href="/sign_in" class="pure-menu-link" id="sign-in"><img src="/images/profile-icon.png" id="profile-img">Sign in</a></li>
-          <% end %>
+                    </form>
+                  </li>
+                </menu>
+              </li>
+            <% else %>
+              <li class="pure-menu-item"><a href="/sign_in" class="pure-menu-link" id="sign-in"><img src="/images/profile-icon.png" id="profile-img">Sign in</a></li>
+            <% end %>
         </menu>
       </nav>
       </header>
