@@ -1,15 +1,593 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body {
+  padding: 2em;
+  font-family: 'Urbanist', sans-serif;
+}
+
+p, a, button, h3, td, th, li{
+  font-family: 'Urbanist', sans-serif;  color: black;
+  line-height: 1.5em;
+  letter-spacing: 1px;
+}
+
+h1, h2 {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+#profile, #stats {
+  padding-left: 2em;
+}
+
+ul{
+  margin-left: 2em;
+}
+
+/* Main Container */
+
+.pure-g {
+  background-color: whitesmoke;
+
+}
+
+main {
+  padding: 2em;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: solid black 3px;
+  padding-bottom: 5em;
+}
+
+/* Buttons */
+
+.pure-button {
+  border-radius: 20px;
+  border: solid black 2.5px;
+  background-color: transparent;
+  /* background-color: thistle; */
+  font-family: 'Urbanist', sans-serif;
+  padding: 1em;
+  min-width: 200px;
+}
+
+#add-new-win-btn {
+  min-width: 150px;
+  padding: 0.75em;
+  margin-left: 50px;
+  position: relative;
+  top: -5px;
+}
+
+#add-new-win-btn img {
+  max-width: 1.75em;
+  padding-right: 1em;
+}
+
+#submit-form-btn {
+  color: black;
+  margin: 2em 0px;
+}
+
+/* Header and nav */
+
+header {
+  background-color: whitesmoke;
+
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border: solid black 3px;
+  border-bottom: none;
+  z-index: 0;
+  position: relative;
+}
+
+nav menu {
+  float: right;
+  top: -90px;
+}
+
+.pure-menu-link, #title {
+  color: black;
+  font-weight: 800;
+}
+
+#title {
+  font-size: 3em;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: none;
+}
+
+#title-icon {
+  max-width: 1em;
+  padding-right: 10px;
+  top: 10px;
+  position: relative;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+.pure-menu-link {
+  font-size: 1.5em;
+}
+
+.pure-menu-link:hover, .pure-menu-link:focus {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+#menuLink1, #sign-in, .pure-menu-children li a {
+  font-size: 1em;
+}
+
+#profile-img {
+  max-width: 1.5em;
+  padding-right: 10px;
+}
+
+#sign-out-btn {
+  border: none;
+  padding: .5em 1em;
+  background-color: white;
+}
+
+#sign-out-btn:hover {
+  text-decoration: underline;
+}
+
+input[type="password"] {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Flash messages */
+
+.flash {
+  z-index: 99;
+  width: 500px;
+  height: auto;
+  background-color: white;
+  position: absolute;
+  left: 40%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: solid black 2.5px;
+  border-top:none;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  opacity: 0.9;
+  white-space:normal;
+}
+
+.flash p {
+  padding: 1em;
+  display: inline-block;
+  white-space: normal;
+}
+
+.flash img {
+  max-width: 1.5em;
+  display: inline-block;
+  padding: 1em 0px 1em 1em;
+  position: relative;
+  top: 22px;
+  height: auto;
+}
+
+.flash.alert img {
+  max-width: 3em;
+}
+
+.hithere {
+  animation: hithere 1s ease 1;
+}
+@keyframes hithere {
+  30% { transform: scale(1.2); }
+  40%, 60% { transform: rotate(-20deg) scale(1.2); }
+  50% { transform: rotate(20deg) scale(1.2); }
+  70% { transform: rotate(0deg) scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.bounce {
+  animation: bounce 2s ease 3;
+}
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
+}
+
+.shake {
+  animation: shake 1s ease 1;
+}
+@keyframes shake {
+	0%, 100% {transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
+/* Tooltips */
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+a.tooltip {
+  text-decoration: none;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: black;
+  border: solid 1px black;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  right: 100%;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltiptext-right {
+  left: 100%;
+}
+
+/* Summary view nav */
+
+#card-nav {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#card-nav a, #card-nav p {
+  text-decoration: none;
+  font-family: 'Urbanist', sans-serif;  padding: 1em;
+  display: inline;
+  padding: 2em;
+  color: black
+}
+
+/* Summary view */
+
+.card {
+  font-family: 'Urbanist', sans-serif;  padding: 1em;
+  background-color: ghostwhite;
+  border: solid darkgray 0.5px;
+  outline: 3px solid #f1e6d0;
+  outline-offset: -10px;
+  border-radius: 20px;
+  margin: 1em;
+  max-width: 300px;
+  min-height: 250px;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  overflow: hidden;
+  text-align: center;
+}
+
+.card-link div:hover {
+  position:relative;
+  bottom: 5px;
+  background-color: peru;
+}
+
+.card-link div:hover img {
+  animation: bounce 2s 1;
+}
+
+.milestone {
+  outline-color: #912123;
+}
+
+.learning {
+  outline-color: #3a7863;
+}
+
+.kudos {
+  outline-color: #dab321;
+}
+
+.project {
+  outline-color: #002849;
+}
+
+.other {
+  outline-color: #f1e6d0;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card {
+  background-image: url("https://www.transparenttextures.com/patterns/squared-metal.png");
+}
+
+.card p {
+  padding: 0.5em 1em;
+  font-size: 0.75em;
+}
+
+.card img {
+  max-width: 3em;
+  padding-top: 20px;
+  display: block;
+  margin: auto;
+}
+
+#card-category {
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  display: block;
+}
+
+#card-title {
+  font-size: 1em;
+}
+
+/* Win card detail view */
+
+.card-detail {
+  max-width: 450px;
+  min-height: 650px;
+  margin: auto;
+  display: block;
+  margin-top: 100px;
+
+  color: black;
+  text-align: left;
+}
+
+.card-detail p {
+  padding-left: 2.5em;
+  font-size: 1em;
+  padding-right: 2em;
+}
+
+#detail-category-img {
+  padding-left: 2em;
+  display: inline-block;
+}
+
+.card-detail #card-category {
+  display: inline-block;
+  vertical-align: 100%;
+  padding-left: 2em;
+}
+
+.card-detail #card-title {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+
+#back-to-summary {
+  color: black;
+  text-decoration: none;
+}
+
+.win-update form, .win-update a{
+  float: right;
+  display: inline-block;
+}
+
+.win-update img {
+  max-width: 2em;
+  padding: 1em;
+}
+
+.win-update button {
+  border: none;
+  background:transparent;
+}
+
+#edit-icon-img img {
+  float:right;
+  max-width: 1.5em;
+  padding-left: 1em;
+  padding-right: 3em;
+  padding-bottom: 2em;
+}
+
+/* Add new win form */
+
+.card-form {
+  padding: 2em;
+}
+
+.card-form label {
+  padding-top: 2em;
+  font-size: larger;
+}
+
+#add-form-cancel-link {
+  position:relative;
+}
+
+.account-update p {
+  display: inline-block;
+
+}
+.account-update a {
+  display: inline-block;
+}
+
+.account-update a img {
+  max-width: 1.25em;
+  padding: 0px;
+}
+
+#delete-account {
+  font-size: 0.75em;
+  background: none;
+  text-decoration: underline;
+  border:none;
+  padding-left: 3em;
+  padding-top: 1em;
+}
+
+
+/* Filter panel*/
+
+#filter-icon {
+  max-width: 1.5em;
+  cursor:pointer;
+}
+
+#filter-icon:hover {
+  height: 25px;
+}
+
+.sidenav {
+  height: 40%;
+  background-color: whitesmoke;
+  border: none;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 100;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 20px;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  text-decoration: none;
+}
+
+.sidenav a:hover {
+  color: auto;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.date-filter {
+  font-family: 'Urbanist', sans-serif;  padding: 1em;
+  color: black;
+  font-size: 0.75em;
+}
+
+.date-filter fieldset {
+  border:none;
+}
+
+.date-filter select {
+  margin-left: 5px;
+}
+
+.date-filter p, .date-filter a {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.date-filter button {
+  color:black;
+  min-width: 100px;
+  margin-right: 10px;
+  padding: 8px 20px;
+  border: 1px black solid;
+}
+
+#filter-btn {
+  color:black;
+  font-size: 1em;
+  border: none;
+  text-decoration: underline;
+  padding: 0px;
+}
+
+.pure-table {
+  padding: 1em;
+  margin-left: 35px;
+  margin-bottom: 3em;
+  background-color: white;
+
+}
+
+.pure-table th {
+  background-color: white;
+  text-transform: capitalize;
+}
+
+#table-count {
+  text-align: center;
+}
+
+.table-total td {
+  background-color: #f1e6d0;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.char-counter {
+  float: right;
+}
+
+#username-char-count, #password-char-count {
+  float: left;
+}
+
+.my-account, .about, .full-size-card{
+  max-width: 750px;
+  margin-top: 50px;
+}
+.my-account div {
+  background-color:ghostwhite;
+  background-image: url("https://www.transparenttextures.com/patterns/squared-metal.png");
+}
+
+.about h2 {
+  padding-left: 1em;
+}
+
+.not-found {
+  text-align: center;
+}
+
+.not-found img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 200px;
+  animation: hithere 7s infinite;
+  padding: 3em;
+}
