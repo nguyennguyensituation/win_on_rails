@@ -17,41 +17,47 @@
   </head>
 
   <body>
-      <header class="pure-menu pure-menu-horizontal header pure-u-1">
-        <a class="pure-menu-heading" id="title" href="/">
-        <img src="/images/laurels.png" id="title-icon"> Nguyen Streak</a>
+    <header class="pure-menu pure-menu-horizontal header pure-u-1" id="site-header">
+      <%= link_to home_path, class:"pure-menu-heading", id:"title" do %>
+        <%= image_tag "/images/laurels.png", id:"title-icon", alt:"laurels icon" %>
+        Nguyen Streak
+      <% end %>
 
-        <nav>
-          <menu class="pure-menu-list">
-            <li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="/about" class="pure-menu-link">About</a></li>
-          
-            <% if session[:user_id] %>
-              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover";">
-                <a href="#" id="menuLink1" class="pure-menu-link">
-                  <img src="/images/profile-icon.png" id="profile-img"><%= session[:username] %>
-                </a>
-                <menu class="pure-menu-children">
-                  <li class="pure-menu-item">
-                    <a href="/my_account" class="pure-menu-link">My account</a>
-                  </li>
-                  <li class="pure-menu-item">
-                    <form onsubmit="return confirm('Are you sure you want to sign out?');" method="post" action="/sign_out">
-                    <button type="submit" id="sign-out-btn">Sign out</button>
-                    </form>
-                  </li>
-                </menu>
-              </li>
-            <% else %>
-              <li class="pure-menu-item"><a href="/sign_in" class="pure-menu-link" id="sign-in"><img src="/images/profile-icon.png" id="profile-img">Sign in</a></li>
-            <% end %>
+      <nav>
+        <menu class="pure-menu-list">
+          <li class="pure-menu-item"><%= link_to "Home", home_path, class:"pure-menu-link" %></li>
+          <li class="pure-menu-item"><%= link_to "About", about_path, class:"pure-menu-link" %></li>   
+
+          <% if logged_in? %>
+            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover";>
+              <%= link_to "#", class:"pure-menu-link", id:"menuLink1" do %>
+                <%= image_tag "/images/profile-icon.png", id:"profile-img", alt:"profile icon" %>
+              <% end %>
+
+              <menu class="pure-menu-children">
+                <li class="pure-menu-item ">
+                  <%= link_to "My account", home_path, class:"pure-menu-link"%>
+                </li>
+                <li class="pure-menu-item">
+                  <%= button_to "Logout", sessions_path, method: :delete %>
+                </li>
+              </menu>
+            </li>
+          <% else %>
+            <li class="pure-menu-item">
+              <%= link_to sign_in_path, class:"pure-menu-link", id:"sign-in" do %>
+                <%= image_tag "/images/profile-icon.png", id:"profile-img", alt:"profile icon" %>
+                Sign in
+              <% end %>
+            </li>
+          <% end %>
         </menu>
       </nav>
-      </header>
+    </header>
   
     <main class="pure-g">
       <div class="pure-u-1">
-        <%== yield %>
+        <%= yield %>
       </div>
     </main>
   </body>

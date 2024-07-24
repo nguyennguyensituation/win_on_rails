@@ -1,0 +1,57 @@
+<article class="pure-u-2-3 card card-detail my-account">
+  <header>
+  <img id="detail-category-img" src="/images/profile-icon.png" alt="profile icon">
+  <p id="card-category">My account</p>
+  </header>
+
+  <div class="pure-g">
+    <section class="account-update pure-u-1-2">
+      <h3 id="profile">Profile</h3>
+
+      <p><b>Username:</b> <%= @user[:username] %></p>
+      <a href="/change_username" class="tooltip">
+        <img src="/images/edit-icon.png" alt="edit icon">
+        <span class="tooltiptext">Change your username</span>
+      </a>
+      <br>
+
+      <p><b>Password:</b> ********</p>
+      <a href="/change_password" class="tooltip">
+        <img src="/images/edit-icon.png" alt="edit icon">
+        <span class="tooltiptext">Change your password</span>
+      </a>
+      <br>
+
+      <p><b>Joined:</b> <%= format_date(@user[:created_at]) %></p>
+
+      <form onsubmit="return confirm('Are you sure you want to delete your account?');" method="post" action="/delete_account">
+        <button id="delete-account" type="submit">Delete account</button>
+      </form>
+    </section>
+
+    <section class="pure-u-1-2">
+      <h3 id="stats">Stats</h3>
+
+      <table class="pure-table pure-table-horizontal">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Number of wins</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% ["TK1", "TK2", "TK3"].each do |category| %>
+            <tr>
+              <td><%= category %></td>
+              <td id="table-count"><%= "3" %></td>
+            </tr>
+          <% end %>
+          <tr class="table-total">
+            <td >total</td>
+            <td id="table-count"><%= "9" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</article>

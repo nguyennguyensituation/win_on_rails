@@ -72,9 +72,8 @@ main {
 
 /* Header and nav */
 
-header {
+#site-header {
   background-color: whitesmoke;
-
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   border: solid black 3px;
