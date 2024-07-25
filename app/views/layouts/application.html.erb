@@ -17,7 +17,6 @@
       <nav>
         <menu>
           <li><%= link_to "About", about_path %></li>   
-
           <% if logged_in? %>
             <li><%= link_to "My account", my_account_path %></li>
             <li><%= button_to "Logout", sessions_path, method: :delete %></li>

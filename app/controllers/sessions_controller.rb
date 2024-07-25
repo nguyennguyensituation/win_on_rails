@@ -9,12 +9,13 @@ class SessionsController < ApplicationController
       session[:password_length] = params[:password].length
       redirect_to @user
     else  
+      session[:username_entered] = params[:username]
       redirect_to sign_in_path
     end
   end
 
   def destroy
-    session[:user_id] = nil
+    reset_session
     redirect_to root_path
   end
 end

@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       session[:password_length] = user_params[:password].length
       redirect_to @user
     else  
-      redirect :new
+      session[:username_entered] = user_params[:username]
+      redirect_to create_account_path
     end
   end
 
