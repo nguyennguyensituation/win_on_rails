@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       @user.save
+      session[:user_id] = @user.id
+      session[:password_length] = user_params[:password].length
       redirect_to @user
     else  
       redirect :new
