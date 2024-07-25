@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def my_account
+    @user = User.find(session[:user_id])
+  end
+
   private
 
   def user_params

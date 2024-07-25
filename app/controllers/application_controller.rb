@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :logged_in?, :current_user, :format_date
+  helper_method :logged_in?, :current_user, :format_date, :format_masked_password
 
   def current_user
     if session[:user_id]
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def format_date(date)
-    date.strftime("%d %B %Y")
+    date.strftime("%B %d, %Y")
+  end
+
+  def format_masked_password(length)
+    "●" * length
   end
 end

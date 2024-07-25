@@ -1,0 +1,45 @@
+<article>
+  <h2>My account</h2>
+
+  <section>
+    <h3 id="profile">Profile</h3>
+
+    <p><b>Username:</b> <%= @user[:username] %></p>
+    <%= link_to "Change username", "#"%>
+
+    <p><b>Password:</b> <%= format_masked_password(session[:password_length]) %></p>
+     <%= link_to "Change password", "#"%>
+
+    <%= button_to "Delete account", "#", method: :delete %>
+  </section>
+
+  <section>
+    <h3>Stats</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Number of wins</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% ["TK1", "TK2", "TK3"].each do |category| %>
+          <tr>
+            <td><%= category %></td>
+            <td><%= "3" %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td >total</td>
+          <td><%= "9" %></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+</article>
+
+<nav>
+  <%= link_to "Go back", user_path(@user) %>
+</nav>

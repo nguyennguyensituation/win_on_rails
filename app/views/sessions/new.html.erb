@@ -1,41 +1,13 @@
-<!--
-<div class="pure-g">
-  <div class="pure-u-1-6"></div>
-  <div class="pure-u-2-3">
-    <div class="card card-detail">
-      <form class="pure-form pure-form-stacked card-form" action="/sign_in" method="post">
+<%= form_tag sessions_path do %>
+  <h2>Sign in</h2>
+  
+  <%= label_tag "Username" %>
+  <%= text_field_tag :username, nil, placeholder: "Enter your username..." %>
 
-        
+  <%= label_tag "Password" %>
+  <%= password_field_tag :password, nil, placeholder: "Enter your password..." %>
 
-        <fieldset>
-          <label for="username">Username</label>
-          <input class="pure-input-1" name="username" type="text" placeholder="Enter your username..." value="<%= params[:username] || ''%>"/>
-          <label for="password">Password</label>
-          <input class="pure-input-1" name="password" type="password" placeholder="Enter your password..." value="<%= params[:password] || ''%>"/>
+  <%= submit_tag "Log In" %>
 
-          <button type="submit" class="pure-button pure-button-primary" id="submit-form-btn">Sign in</button>
-          <a href="/create_account" class="pure-form-message" id="add-form-cancel-link">Create new account</a>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-  <div class="pure-u-1-6"></div>
-</div>
-
--->
-<div class="card card-detail">
-
-  <%= form_tag sessions_path, class: "pure-form pure-form-stacked card-form" do %>
-    <h2>Sign in</h2>
-    
-    <%= label_tag "Username" %>
-    <%= text_field_tag :username, nil, placeholder: "Enter your username...", class: "pure-input-1" %>
-
-    <%= label_tag "Password" %>
-    <%= password_field_tag :password, nil, placeholder: "Enter your password...", class: "pure-input-1" %>
-
-    <%= submit_tag "Log In", class: "pure-button pure-button-primary", id: "submit-form-btn"%>
-
-     <a href="/create_account" class="pure-form-message" id="add-form-cancel-link">Create new account</a>
-  <% end %>
-</div>
+  <%= link_to "Create new account", create_account_path%>
+<% end %>

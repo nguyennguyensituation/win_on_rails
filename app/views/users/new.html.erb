@@ -1,18 +1,18 @@
-<div class="card card-detail">
-  <%= form_with model: @user, class: "pure-form pure-form-stacked card-form" do |form| %>
-    <h2>Create a New Account</h2>
-    <%= form.label :username %>
-    <%= form.text_field :username, class: "pure-input-1", placeholder: "Enter a username..." %>
+<%= form_with model: @user do |form| %>
+  <h2>Create a New Account</h2>
 
-    <%= form.label :password %>
-    <%= form.password_field :password, class: "pure-input-1", placeholder: "Enter a password..." %>
+  <%= form.label :username %>
+  <%= form.text_field :username, placeholder: "Enter a username..." %>
 
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, class: "pure-input-1", placeholder: "Please enter your password again..." %>
+  <%= form.label :password %>
+  <%= form.password_field :password, placeholder: "Enter a password..." %>
 
-    <button type="submit" class="pure-button pure-button-primary" id="submit-form-btn">Create account</button>
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation, placeholder: "Please enter your password again..." %>
 
-    <a href="/" class="pure-form-message" id="add-form-cancel-link">Cancel</a>
-  <% end %>
-</div>
+  <%= form.submit "Create Account" %>
+
+  <%= link_to "Cancel", home_path %>
+<% end %>
+
 

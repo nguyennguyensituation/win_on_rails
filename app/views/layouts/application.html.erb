@@ -5,60 +5,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= stylesheet_link_tag 'pure-min.css' %>
     <%= stylesheet_link_tag 'application.css' %>
-    <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css' %>
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Urbanist&display=swap' %>
   </head>
 
   <body>
-    <header class="pure-menu pure-menu-horizontal header pure-u-1" id="site-header">
-      <%= link_to home_path, class:"pure-menu-heading", id:"title" do %>
-        <%= image_tag "/images/laurels.png", id:"title-icon", alt:"laurels icon" %>
-        Nguyen Streak
-      <% end %>
-
+    <header>
+      <h1><%= link_to "Nguyen Streak", home_path %></h1>
+      
       <nav>
-        <menu class="pure-menu-list">
-          <li class="pure-menu-item"><%= link_to "Home", home_path, class:"pure-menu-link" %></li>
-          <li class="pure-menu-item"><%= link_to "About", about_path, class:"pure-menu-link" %></li>   
+        <menu>
+          <li><%= link_to "About", about_path %></li>   
 
           <% if logged_in? %>
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover";>
-              <%= link_to "#", class:"pure-menu-link", id:"menuLink1" do %>
-                <%= image_tag "/images/profile-icon.png", id:"profile-img", alt:"profile icon" %>
-              <% end %>
-
-              <menu class="pure-menu-children">
-                <li class="pure-menu-item ">
-                  <%= link_to "My account", home_path, class:"pure-menu-link"%>
-                </li>
-                <li class="pure-menu-item">
-                  <%= button_to "Logout", sessions_path, method: :delete %>
-                </li>
-              </menu>
-            </li>
+            <li><%= link_to "My account", my_account_path %></li>
+            <li><%= button_to "Logout", sessions_path, method: :delete %></li>
           <% else %>
-            <li class="pure-menu-item">
-              <%= link_to sign_in_path, class:"pure-menu-link", id:"sign-in" do %>
-                <%= image_tag "/images/profile-icon.png", id:"profile-img", alt:"profile icon" %>
-                Sign in
-              <% end %>
-            </li>
+            <li><%= link_to "Sign in", sign_in_path %></li>
           <% end %>
         </menu>
       </nav>
     </header>
   
-    <main class="pure-g">
-      <div class="pure-u-1">
-        <%= yield %>
-      </div>
+    <main >
+      <%= yield %>
     </main>
   </body>
 </html>
