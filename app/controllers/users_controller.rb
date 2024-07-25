@@ -9,11 +9,13 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       @user.save
-      # automatically sign in after creating account
       session[:user_id] = @user.id
       session[:password_length] = user_params[:password].length
+      session[:errors_array] = nil
+      flash[:notice] = "Welcome, #{@user[:username].capitalize}!"
       redirect_to @user
     else  
+      session[:errors_array] = @user.errors.full_messages
       session[:username_entered] = user_params[:username]
       redirect_to create_account_path
     end
