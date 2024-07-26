@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   get "/sign_in", to: "sessions#new"
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
+
   get "/my_account", to: "users#my_account"
 
-  resources :users, only: [:create, :show]
-  # TK win routes
+  resources :users do
+    resources :wins
+  end
 end
