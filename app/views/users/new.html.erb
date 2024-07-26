@@ -14,3 +14,13 @@
 
   <%= link_to "Cancel", root_path %>
 <% end %>
+
+ <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li>
+        <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

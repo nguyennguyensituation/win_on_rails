@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @errors = flash[:errors]
   end
 
   def create
@@ -11,12 +12,10 @@ class UsersController < ApplicationController
       @user.save
       session[:user_id] = @user.id
       session[:password_length] = user_params[:password].length
-      session[:errors_array] = nil
-      flash[:notice] = "Welcome, #{@user[:username].capitalize}!"
-      redirect_to @user
+      redirect_to @user, notice: "Welcome, #{@user[:username].capitalize}!"
     else  
-      session[:errors_array] = @user.errors.full_messages
       session[:username_entered] = user_params[:username]
+      flash[:errors] = @user.errors.full_messages
       redirect_to create_account_path
     end
   end

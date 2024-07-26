@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @errors = flash[:errors]
   end
 
   def create
@@ -7,19 +8,16 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       session[:password_length] = params[:password].length
-      session[:error] = nil
-      flash[:notice] = "Hello, #{@user[:username].capitalize}!"
-      redirect_to @user
+      redirect_to @user, notice: "Hello, #{@user[:username].capitalize}!"
     else  
-      session[:errors_array] = ["Your username or password is incorrect."]
       session[:username_entered] = params[:username]
+      flash[:errors] = ["Invalid username or password"]
       redirect_to sign_in_path
     end
   end
 
   def destroy
     reset_session
-    flash[:notice] = "You are signed out!"
-    redirect_to root_path
+    redirect_to root_path, notice: "You are signed out!"
   end
 end

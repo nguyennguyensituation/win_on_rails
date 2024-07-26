@@ -28,16 +28,8 @@
     </header>
   
     <main >
-      <% flash.each do |name, msg| %>
-        <%= msg %>
-      <% end %>
-
-      <% if !session[:errors_array].empty? %>
-        <ul>
-          <% session[:errors_array].each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
       <% end %>
 
       <%= yield %>

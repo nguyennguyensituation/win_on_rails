@@ -12,3 +12,13 @@
 
   <%= link_to "Create new account", create_account_path%>
 <% end %>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li>
+        <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
