@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       session[:password_length] = params[:password].length
-      redirect_to @user, notice: "Hello, #{@user[:username].capitalize}!"
+      redirect_to user_wins_path(@user), notice: "Hello, #{@user[:username].capitalize}!"
     else  
       session[:username_entered] = params[:username]
       flash[:errors] = ["Invalid username or password"]

@@ -1,0 +1,14 @@
+<h2>Wins show path</h2>
+<%= link_to "Add win", new_user_win_path(session[:user_id]) %>
+
+<% if @wins.empty? %>
+  <p>It looks like you haven't added any wins yet.</p>
+<% else %>
+  <ul>
+    <% @wins.each do |win| %>
+    <li>
+      <p><%= win.title %></p>
+    </li>
+    <% end %>
+</ul>
+<% end %>

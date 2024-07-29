@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    redirect_to user_wins_path(session[:user_id])
   end
 
   def my_account

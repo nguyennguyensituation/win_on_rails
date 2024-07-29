@@ -10,13 +10,18 @@ class WinsController < ApplicationController
     
     if @win.valid?
       @win.save
-      redirect_to @user, notice: "#{win_params[:title]} added!"
+      redirect_to user_wins_path(@user), notice: "#{win_params[:title]} added!"
     else
       session[:title] = win_params[:title]
       session[:description] = win_params[:description]
       flash[:errors] = @win.errors.full_messages
       redirect_to new_user_win_path
     end
+  end
+
+  def index
+    @user = User.find(params[:user_id])
+    @wins = @user.wins
   end
 
   private
