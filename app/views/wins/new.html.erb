@@ -1,0 +1,20 @@
+<%= form_with model: [ @user, @user.wins.build ] do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title, placeholder: "Enter a title", value: session[:title]   %><br>
+
+  <%= form.label :description %>
+  <%= form.text_area :description, placeholder: "Enter a description", value: session[:description]  %><br>
+
+  <%= form.label :category %>
+  <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'] %><br>
+
+  <%= form.label "Date completed" %>
+  <%= form.date_select :accomplished_date %><br>
+
+  <%= form.submit %><br>
+  <%= link_to "Cancel", home_path %>
+<% end %>
+
+<%= render "application/errors", errors: @errors %>
+
+
