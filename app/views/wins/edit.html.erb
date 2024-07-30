@@ -1,0 +1,23 @@
+<h2>Edit Win</h2>
+
+<%= form_with model: @win, url: user_win_path({user_id: @user.id, id: @win.id}), method: :patch, local: true do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title, value: @win.title %><br>
+
+  <%= form.label :description %>
+  <%= form.text_area :description, value: @win.description %><br>
+
+  <%= form.label :category %>
+  <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'], selected: @win.category %><br>
+
+  <%= form.label "Date completed" %>
+  <%= form.date_select :accomplished_date %><br>
+
+  <%= form.submit %><br>
+<% end %>
+
+<%= render "application/errors", errors: @errors %>
+
+<nav>
+  <%= link_to "Go back", user_path(@user) %>
+</nav>

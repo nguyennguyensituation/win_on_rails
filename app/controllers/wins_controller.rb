@@ -19,9 +19,35 @@ class WinsController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:user_id])
+    @win = @user.wins.find(params[:id])
+    @errors = flash[:errors]
+  end
+
+  def update
+    @user = User.find(params[:user_id])
+    @win = @user.wins.find(params[:id])
+
+    if @win.valid?
+      @win.update(win_params)
+      redirect_to user_wins_path(@user), notice: "Win updated!"
+    else
+      flash[:errors] = @win.errors.full_messages
+      redirect_to edit_user_win_path
+    end
+
+  end
+
   def index
     @user = User.find(params[:user_id])
-    @wins = @user.wins
+    @wins = @user.wins.sort_by { |win| win.accomplished_date }
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    @win = @user.wins.find(params[:id])
+
   end
 
   private

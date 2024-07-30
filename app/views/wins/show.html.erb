@@ -1,0 +1,15 @@
+<menu>
+  <%= link_to "Edit", edit_user_win_path %>
+  <%= button_to "Delete", user_win_path,  method: :delete %>
+</menu>
+
+<article class="card">
+  <h3><%= @win.title %></h3>
+  <p><%= @win.category %></p>
+  <p><%= format_date(@win.accomplished_date) %></p>
+  <p><%= @win.description %></p>
+</article>
+
+<nav>
+  <%= link_to "Go back", user_path(@user) %>
+</nav>

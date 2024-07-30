@@ -6,10 +6,10 @@
   <%= form.text_area :description, placeholder: "Enter a description", value: session[:description]  %><br>
 
   <%= form.label :category %>
-  <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'] %><br>
+  <%= form.select :category, ['milestone', 'project', 'kudos', 'learning', 'other'], include_blank: "Choose a category" %><br>
 
   <%= form.label "Date completed" %>
-  <%= form.date_select :accomplished_date %><br>
+  <%= form.date_select :accomplished_date, include_blank: true, selected: Date.today %><br>
 
   <%= form.submit %><br>
   <%= link_to "Cancel", home_path %>
