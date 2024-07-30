@@ -28,12 +28,13 @@ class WinsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @win = @user.wins.find(params[:id])
+    new_win = @user.wins.build(win_params)
 
-    if @win.valid?
+    if new_win.valid?
       @win.update(win_params)
-      redirect_to user_wins_path(@user), notice: "Win updated!"
+      redirect_to user_win_path, notice: "#{@win.title} updated!"
     else
-      flash[:errors] = @win.errors.full_messages
+      flash[:errors] = new_win.errors.full_messages
       redirect_to edit_user_win_path
     end
 
