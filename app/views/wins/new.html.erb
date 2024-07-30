@@ -12,9 +12,12 @@
   <%= form.date_select :accomplished_date, include_blank: true, selected: Date.today %><br>
 
   <%= form.submit %><br>
-  <%= link_to "Cancel", home_path %>
 <% end %>
 
 <%= render "application/errors", errors: @errors %>
+
+<nav>
+  <%= link_to "Go back", user_path(@user) %>
+</nav>
 
 

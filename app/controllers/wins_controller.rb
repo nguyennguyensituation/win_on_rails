@@ -42,7 +42,7 @@ class WinsController < ApplicationController
 
     if new_win.valid?
       @win.update(win_params)
-      redirect_to user_win_path, notice: "#{@win.title} updated!"
+      redirect_to user_win_path, notice: "#{@win.title} has been updated."
     else
       flash[:errors] = new_win.errors.full_messages
       redirect_to edit_user_win_path
@@ -53,7 +53,7 @@ class WinsController < ApplicationController
     @user = User.find(params[:user_id])
     @win = @user.wins.find(params[:id])
     @win.destroy
-    redirect_to @user
+    redirect_to @user, notice: "#{@win.title} has been deleted."
   end
 
   private
