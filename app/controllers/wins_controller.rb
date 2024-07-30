@@ -1,4 +1,14 @@
 class WinsController < ApplicationController
+  def index
+    @user = User.find(params[:user_id])
+    @wins = @user.wins.sort_by { |win| win.accomplished_date }
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    @win = @user.wins.find(params[:id])
+  end
+
   def new
     @user = User.find(params[:user_id])
     @errors = flash[:errors]
@@ -37,18 +47,13 @@ class WinsController < ApplicationController
       flash[:errors] = new_win.errors.full_messages
       redirect_to edit_user_win_path
     end
-
   end
 
-  def index
-    @user = User.find(params[:user_id])
-    @wins = @user.wins.sort_by { |win| win.accomplished_date }
-  end
-
-  def show
+  def destroy
     @user = User.find(params[:user_id])
     @win = @user.wins.find(params[:id])
-
+    @win.destroy
+    redirect_to @user
   end
 
   private
