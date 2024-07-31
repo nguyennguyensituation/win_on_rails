@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "/my_account", to: "users#my_account"
 
+  get "/cancel", to: "wins#cancel"
+
   resources :users do
     resources :wins
   end

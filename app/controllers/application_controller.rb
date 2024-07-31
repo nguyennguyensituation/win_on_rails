@@ -19,15 +19,4 @@ class ApplicationController < ActionController::Base
     redirect_to sign_in_path unless logged_in?
   end
 
-  def print_test(value)
-    if value[:user]
-      puts "TESTING -------------------------->"
-      value[:user].each { |param| puts param }
-      puts "---------------------------------->"
-    else
-      puts "TESTING -------------------------->"
-      puts value
-      puts "---------------------------------->"
-    end
-  end
 end

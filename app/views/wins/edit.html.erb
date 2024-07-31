@@ -2,22 +2,20 @@
 
 <%= form_with model: @win, url: user_win_path, method: :patch, local: true do |form| %>
   <%= form.label :title %>
-  <%= form.text_field :title, value: @win.title %><br>
+  <%= form.text_field :title, value: session[:title] || @win.title %><br>
 
   <%= form.label :description %>
-  <%= form.text_area :description, value: @win.description %><br>
+  <%= form.text_area :description, value: session[:description] || @win.description %><br>
 
   <%= form.label :category %>
-  <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'], selected: @win.category %><br>
+  <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'], selected: session[:category] || @win.category %><br>
 
   <%= form.label "Date completed" %>
-  <%= form.date_select :accomplished_date %><br>
+  <%= form.date_select :accomplished_date, order: [:day, :month, :year], selected: populate_date || @win.accomplished_date %><br>
 
   <%= form.submit %><br>
 <% end %>
 
 <%= render "application/errors", errors: @errors %>
 
-<nav>
-  <%= link_to "Go back", user_path %>
-</nav>
+<%= link_to "Cancel", cancel_path%>
