@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   delete "/sessions", to: "sessions#destroy"
 
   get "/my_account", to: "users#my_account"
-  get "/change_username", to: "users#change_username"
-  get "/change_password", to: "users#change_password"
 
   resources :users do
     resources :wins

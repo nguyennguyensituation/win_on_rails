@@ -20,10 +20,10 @@ class WinsController < ApplicationController
     
     if @win.valid?
       @win.save
-      redirect_to user_wins_path(@user), notice: "#{win_params[:title]} added!"
+      reset_form
+      redirect_to user_wins_path(@user), notice: "#{@win[:title]} added!"
     else
-      session[:title] = win_params[:title]
-      session[:description] = win_params[:description]
+      set_form_values
       flash[:errors] = @win.errors.full_messages
       redirect_to new_user_win_path
     end
@@ -57,6 +57,15 @@ class WinsController < ApplicationController
   end
 
   private
+  FIELDS = ['title', 'description', 'category', 'accomplished_date(1i)', 'accomplished_date(2i)', 'accomplished_date(3i)']
+
+  def set_form_values
+    FIELDS.each { |field| session[field] = win_params[field] }
+  end
+
+  def reset_form
+    FIELDS.each { |category| session[category] = nil } 
+  end
 
   def win_params
     params.require(:win).permit(:title, :description, :category, :accomplished_date)

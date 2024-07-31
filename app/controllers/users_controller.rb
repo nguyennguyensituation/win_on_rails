@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:show]
+  before_action :set_user, only: [:my_account, :destroy]
   
   def show
     redirect_to user_wins_path(session[:user_id])
@@ -25,11 +26,9 @@ class UsersController < ApplicationController
   end
 
   def my_account
-    @user = User.find(session[:user_id])
   end
 
   def destroy
-    @user = User.find(session[:user_id])
     @user.destroy
     reset_session
     redirect_to home_path, notice: "Your account has been deleted."
@@ -39,5 +38,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(session[:user_id])
   end
 end

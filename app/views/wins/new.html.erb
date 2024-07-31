@@ -1,15 +1,15 @@
 <%= form_with model: [ @user, @user.wins.build ] do |form| %>
   <%= form.label :title %>
-  <%= form.text_field :title, placeholder: "Enter a title", value: session[:title]   %><br>
+  <%= form.text_field :title, placeholder: "Enter a title", value: session[:title] %><br>
 
   <%= form.label :description %>
-  <%= form.text_area :description, placeholder: "Enter a description", value: session[:description]  %><br>
+  <%= form.text_area :description, size: "60x10", placeholder: "Enter a description", value: session[:description]  %><br>
 
   <%= form.label :category %>
-  <%= form.select :category, ['milestone', 'project', 'kudos', 'learning', 'other'], include_blank: "Choose a category" %><br>
+  <%= form.select :category, ['milestone', 'project', 'kudos', 'learning', 'other'], include_blank: "Choose a category", selected: session[:category] %><br>
 
   <%= form.label "Date completed" %>
-  <%= form.date_select :accomplished_date, include_blank: true, selected: Date.today %><br>
+  <%= form.date_select :accomplished_date, order: [:day, :month, :year], selected: populate_date %><br>
 
   <%= form.submit %><br>
 <% end %>
