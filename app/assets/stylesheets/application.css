@@ -1,19 +1,177 @@
+body {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 100;
+}
+
+h1, h2 {
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  font-style: italic;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+  padding-bottom: 20px;
+}
+
+a {
+  color: black;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 100;
+  border-radius: 10px;
+  border: solid black 0.75px;
+  background-color: transparent;
+  padding: 10px;
+  min-width: 100px;
+}
+
+a:hover, button:hover {
+  text-decoration: underline;
+}
+
+/* HEADER  */
+
 header {
-  background-color: tomato;
+  background-color: whitesmoke;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border: solid black 0.75px;
+  border-bottom-color: whitesmoke;
+  display: grid;
+  grid-template-columns: auto 300px;
+  color: black;
 }
 
-menu {
-  background-color: lightblue;
+header * {
+  text-decoration: none;
 }
 
-nav {
-  background-color:cornflowerblue;
+#title, #main-nav {
+  padding: 32px;
 }
+
+#title * {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#title img {
+  padding-right: 20px;
+}
+
+#main-nav menu {
+  display: grid;
+  grid-template-columns: auto auto;
+  font-size: 20px;
+}
+
+#main-nav li {
+  list-style: none;
+}
+
+#profile-dropdown {
+  cursor: pointer;
+}
+
+#profile-dropdown img {
+  vertical-align: top;
+  padding-right: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  background-color: whitesmoke;
+  position: absolute;
+  z-index: 1;
+  border: solid black 0.75px;
+  width: 100px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* MAIN  */
 
 main {
-  background-color: cornsilk;
+  background-color: whitesmoke;
+  padding: 32px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: solid black 0.75px;
+}
+
+/* ALERTS  */
+
+.flash {
+  background-color: cornflowerblue;
+}
+
+/* IMAGES  */
+
+.title-icon {
+  width: 60px;
+}
+
+.menu-icon {
+  width: 20px;
+}
+
+.card-icon {
+  width: 40px;
+}
+
+/* CARDS  */
+
+#card-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+}
+
+#card-container > a {
+  text-decoration: none;
 }
 
 .card {
-  background-color: lavender;
+  background-color: ghostwhite;
+  border: solid darkgray 0.25px;
+  border-radius: 20px;
+  width: 250px;
+  height: 250px;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  padding: 20px;
+  text-align: center;
 }
+
+.card img {
+  padding-top: 20px;
+}
+
+.card h3 {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.card h4 {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+
+

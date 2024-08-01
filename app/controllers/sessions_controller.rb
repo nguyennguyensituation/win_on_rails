@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      session[:username] = @user.username.capitalize
       session[:password_length] = params[:password].length
       redirect_to user_wins_path(@user), notice: "Hello, #{@user[:username].capitalize}!"
     else  

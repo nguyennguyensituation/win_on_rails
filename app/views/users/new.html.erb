@@ -1,5 +1,5 @@
 <%= form_with model: @user do |form| %>
-  <h2>Create a New Account</h2>
+  <h2>Create New Account</h2>
 
   <%= form.label :username %>
   <%= form.text_field :username, placeholder: "Enter a username", value: session[:username_entered] %><br>
