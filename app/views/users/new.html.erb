@@ -11,8 +11,10 @@
   <%= form.password_field :password_confirmation, placeholder: "Enter your password again" %><br>
 
   <%= form.submit "Create Account" %><br>
-
-  <%= link_to "Cancel", root_path %>
 <% end %>
 
 <%= render "application/errors", errors: @errors %>
+
+<nav>
+  <%= link_to "Cancel", root_path %>
+</nav>
