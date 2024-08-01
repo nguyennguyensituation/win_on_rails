@@ -17,8 +17,10 @@
   <body>
     <header>
       <section id="title">
-       <%= image_tag("laurels.png", alt: "laurels icon", class: "title-icon" ) %>
-       <h1><%= link_to "Nguyen Streak", root_path %></h1>
+      <%= link_to root_path do %>
+        <%= image_tag("laurels.png", alt: "laurels icon", class: "title-icon" ) %>
+        <h1>Nguyen Streak</h1>
+      <% end %>
       </section>
 
       <nav id="main-nav">
