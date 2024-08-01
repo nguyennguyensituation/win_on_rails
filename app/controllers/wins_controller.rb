@@ -1,21 +1,16 @@
 class WinsController < ApplicationController
+  before_action :set_user
+  before_action :set_win, only: [:show, :edit, :update, :destroy]
+
   def index
-    set_user
     @wins = @user.wins.sort_by { |win| win.accomplished_date }
   end
 
-  def show
-    set_user
-    set_win
-  end
-
   def new
-    set_user
     @errors = flash[:errors]
   end
 
   def create
-    set_user
     @win = @user.wins.build(win_params)
     
     if @win.valid?
@@ -30,14 +25,10 @@ class WinsController < ApplicationController
   end
 
   def edit
-    set_user
-    set_win
     @errors = flash[:errors]
   end
 
   def update
-    set_user
-    set_win
     edited_win = @user.wins.build(win_params)
 
     if edited_win.valid?
@@ -52,19 +43,17 @@ class WinsController < ApplicationController
   end
 
   def destroy
-    set_user
-    set_win
     @win.destroy
     redirect_to @user, notice: "#{@win.title} has been deleted."
   end
 
   def cancel
-    @user = User.find(session[:user_id])
     reset_session_form_values
     redirect_to @user
   end
 
   private
+  
   FIELDS = ['title', 'description', 'category', 'accomplished_date(1i)', 'accomplished_date(2i)', 'accomplished_date(3i)']
 
   def set_session_form_values
@@ -77,10 +66,6 @@ class WinsController < ApplicationController
 
   def win_params
     params.require(:win).permit(:title, :description, :category, :accomplished_date)
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 
   def set_win

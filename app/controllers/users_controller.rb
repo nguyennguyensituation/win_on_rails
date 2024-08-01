@@ -25,9 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def my_account
-  end
-
   def destroy
     @user.destroy
     reset_session
@@ -38,9 +35,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)
-  end
-
-  def set_user
-    @user = User.find(session[:user_id])
   end
 end
