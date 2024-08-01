@@ -31,6 +31,22 @@ class UsersController < ApplicationController
     redirect_to home_path, notice: "Your account has been deleted."
   end
 
+  def my_account
+    wins = @user.wins
+    @categories = {}
+    @total = wins.length
+
+    wins.each do |win|
+      category = win.category
+      
+      if @categories[category]
+        @categories[category] += 1
+      else
+        @categories[category] = 1
+      end
+    end
+  end
+
   private
 
   def user_params

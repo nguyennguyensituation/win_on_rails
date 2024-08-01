@@ -25,15 +25,15 @@
         </tr>
       </thead>
       <tbody>
-        <% ["TK1", "TK2", "TK3"].each do |category| %>
+        <% @categories.each do |name, value| %>
           <tr>
-            <td><%= category %></td>
-            <td><%= "3" %></td>
+            <td><%= name %></td>
+            <td><%= value %></td>
           </tr>
         <% end %>
         <tr>
           <td >total</td>
-          <td><%= "9" %></td>
+          <td><%= @total %></td>
         </tr>
       </tbody>
     </table>
