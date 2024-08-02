@@ -61,16 +61,20 @@ header {
   border: solid black 0.75px;
   border-bottom-color: whitesmoke;
   display: grid;
-  grid-template-columns: auto 300px;
-  color: black;
+  grid-template-columns: auto;
+  color: black; 
 }
 
 header * {
   text-decoration: none;
 }
 
-#title, #main-nav {
-  padding: 32px;
+#title {
+  padding: 20px 20px 10px 20px;
+}
+
+#main-nav {
+  border-top: solid black 0.75px;
 }
 
 #title * {
@@ -84,7 +88,8 @@ header * {
 
 #main-nav menu {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
+  row-gap: 10px;
   font-size: 20px;
 }
 
@@ -152,7 +157,7 @@ main {
   outline: 1px solid black;
   outline-offset: -10px;
   width: 400px;
-  height: 100px;
+  height: 75px;
   padding: 20px;
   display: grid;
   grid:
@@ -160,7 +165,7 @@ main {
   'menu main';
   grid-gap: auto;
   grid-template-columns: auto auto;
-  grid-template-rows: 50px auto;
+  grid-template-rows: 40px auto;
   -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
   -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -198,6 +203,7 @@ main {
   font-weight: 300;
   font-style: italic;
   padding-left: 10px;
+  font-size: 14px;
 }
 
 .milestone {
@@ -242,12 +248,29 @@ main {
     background: yellow;
   }
 
+  header {
+    grid-template-columns: auto 275px;
+  }
+  
+  #title, #main-nav {
+    padding: 20px;
+  }
+
+  #main-nav {
+    border-top: none;
+  }
+
+  #main-nav menu {
+    grid-template-columns: auto auto;
+  }
+
   #card-container {
     grid-template-columns: auto auto;
   }
 
   .card {
     width: 300px;
+    height: 100px;
   }
 } 
 
@@ -255,6 +278,19 @@ main {
 @media only screen and (min-width: 992px) {
   body {
     background: green;
+  }
+
+  #card-container {
+    grid-template-columns: auto auto auto;
+  }
+
+  .card {
+    width: 250px;
+    height: 200px;
+  }
+
+  .card-title {
+    font-size: 16px;
   }
 } 
 
@@ -265,7 +301,7 @@ main {
   }
 
   #card-container {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto ;
   }
 }
 
@@ -273,7 +309,8 @@ main {
   body {
     background-color: whitesmoke;
   }
+
   #card-container {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
   }
 }
