@@ -38,7 +38,21 @@ a:hover, button:hover {
   text-decoration: underline;
 }
 
-/* HEADER  */
+/* IMAGES  */
+
+.small-icon {
+  width: 20px;
+}
+
+.medium-icon {
+  width: 40px;
+}
+
+.large-icon {
+  width: 60px;
+}
+
+/* MAIN HEADER  */
 
 header {
   background-color: whitesmoke;
@@ -102,7 +116,7 @@ header * {
   display: block;
 }
 
-/* MAIN  */
+/* MAIN CONTENT */
 
 main {
   background-color: whitesmoke;
@@ -118,25 +132,11 @@ main {
   background-color: cornflowerblue;
 }
 
-/* IMAGES  */
-
-.small-icon {
-  width: 20px;
-}
-
-.medium-icon {
-  width: 40px;
-}
-
-.large-icon {
-  width: 60px;
-}
-
 /* CARDS  */
 
 #card-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
 }
@@ -147,33 +147,57 @@ main {
 
 .card {
   background-color: ghostwhite;
-  border: solid black 0.1px;
+  background-image: url("card-background.png");  
   border-radius: 20px;
   outline: 1px solid black;
   outline-offset: -10px;
-  width: 250px;
-  height: 250px;
-  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
-  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
-  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  width: 400px;
+  height: 100px;
   padding: 20px;
-  text-align: center;
-  background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");  
+  display: grid;
+  grid:
+  'icon date'
+  'menu main';
+  grid-gap: auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: 50px auto;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: transform 0.2s;
 }
 
-.card-icon {
-  padding-top: 24px;
+.card:hover {
+  transform: translate(0px, -10px);
 }
 
-.card-title {
-  font-weight: 300;
-  font-style: italic;
+.card-logo {
+  grid-area: icon;
+}
+
+.card-logo * {
+  display: inline-block;
+  vertical-align: top;
 }
 
 .card-category {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 100;
+  padding-left: 5px;
+}
+
+.card-date {
+  grid-area: date;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.card-title {
+  font-weight: 300;
+  font-style: italic;
+  padding-left: 10px;
 }
 
 .milestone {
@@ -194,4 +218,62 @@ main {
 
 .other {
   outline-color: #f1e6d0;
+}
+
+/* MEDIA QUERIES  */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  body {
+    background: red;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  body {
+    background: orange;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  body {
+    background: yellow;
+  }
+
+  #card-container {
+    grid-template-columns: auto auto;
+  }
+
+  .card {
+    width: 300px;
+  }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  body {
+    background: green;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  body {
+    background-color: blue;
+  }
+
+  #card-container {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media only screen and (min-width: 1475px) {
+  body {
+    background-color: whitesmoke;
+  }
+  #card-container {
+    grid-template-columns: auto auto auto auto;
+  }
 }
