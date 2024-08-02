@@ -120,16 +120,16 @@ main {
 
 /* IMAGES  */
 
-.title-icon {
-  width: 60px;
-}
-
-.menu-icon {
+.small-icon {
   width: 20px;
 }
 
-.card-icon {
+.medium-icon {
   width: 40px;
+}
+
+.large-icon {
+  width: 60px;
 }
 
 /* CARDS  */
@@ -147,8 +147,10 @@ main {
 
 .card {
   background-color: ghostwhite;
-  border: solid darkgray 0.25px;
+  border: solid black 0.1px;
   border-radius: 20px;
+  outline: 1px solid black;
+  outline-offset: -10px;
   width: 250px;
   height: 250px;
   -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
@@ -156,22 +158,40 @@ main {
   box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
   padding: 20px;
   text-align: center;
+  background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");  
 }
 
-.card img {
-  padding-top: 20px;
+.card-icon {
+  padding-top: 24px;
 }
 
-.card h3 {
+.card-title {
   font-weight: 300;
   font-style: italic;
 }
 
-.card h4 {
+.card-category {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 100;
 }
 
+.milestone {
+  outline-color: #912123;
+}
 
+.learning {
+  outline-color: #3a7863;
+}
 
+.kudos {
+  outline-color: #dab321;
+}
+
+.project {
+  outline-color: #002849;
+}
+
+.other {
+  outline-color: #f1e6d0;
+}

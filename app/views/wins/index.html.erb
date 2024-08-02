@@ -9,11 +9,11 @@
   <% else %>
     <% @wins.each do |win| %>
       <%= link_to user_win_path(id: win.id) do %>
-      <article class="card">
-        <%= image_tag("card-icon-#{win.category}.png", alt: "profile icon", class: "card-icon" ) %>
-        <h4><%= win.category %></h4>
-        <h3><%= win.title %></h3>
-        <p><%= format_date(win.accomplished_date) %></p>
+      <article class="card <%= win.category %>">
+        <%= image_tag("card-icon-#{win.category}.png", alt: "profile icon", class: "medium-icon card-icon" ) %>
+        <h4 class="card-category"><%= win.category %></h4>
+        <h3 class="card-title"><%= win.title %></h3>
+        <p class="card-date"><%= format_date(win.accomplished_date) %></p>
       </article>
       <% end %>
     <% end %>

@@ -18,7 +18,7 @@
     <header>
       <section id="title">
       <%= link_to root_path do %>
-        <%= image_tag("laurels.png", alt: "laurels icon", class: "title-icon" ) %>
+        <%= image_tag("laurels.png", alt: "laurels icon", class: "large-icon" ) %>
         <h1>Nguyen Streak</h1>
       <% end %>
       </section>
@@ -28,7 +28,7 @@
           <li><%= link_to "About", about_path %></li>   
           <% if logged_in? %>
           <div class="dropdown">
-            <li id="profile-dropdown"><%= image_tag("profile-icon.png", alt: "profile icon", class: "menu-icon" ) %><%= session[:username] %></li>   
+            <li id="profile-dropdown"><%= image_tag("profile-icon.png", alt: "profile icon", class: "small-icon" ) %><%= session[:username] %></li>   
             <ul class="dropdown-content">
               <li><%= link_to "My account", my_account_path %></li>
               <li><%= link_to "Sign out", sessions_path,  method: :delete, data: {
