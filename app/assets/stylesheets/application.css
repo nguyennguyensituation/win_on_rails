@@ -1,12 +1,12 @@
 body {
   font-family: 'Urbanist', sans-serif;
-  font-weight: 100;
+  font-weight: 200;
+  letter-spacing: 1.2px;
 }
 
 h1, h2 {
   font-weight: 300;
   letter-spacing: 2.5px;
-  font-style: italic;
   margin: 0;
 }
 
@@ -17,6 +17,10 @@ h1 {
 h2 {
   font-size: 2em;
   padding-bottom: 20px;
+}
+
+h3 {
+  line-height: 1.5;
 }
 
 a {
@@ -77,10 +81,6 @@ header * {
   text-decoration: none;
 }
 
-#main-nav {
-  border-top: solid black 0.75px;
-}
-
 #title * {
   display: inline-block;
   vertical-align: top;
@@ -91,10 +91,13 @@ header * {
   padding-right: 10px;
 }
 
+#main-nav {
+  border-top: solid black 0.75px;
+}
+
 #main-nav menu {
   display: grid;
   grid-template-columns: auto auto;
-  row-gap: 10px;
   font-size: 20px;
 }
 
@@ -119,9 +122,9 @@ header * {
   position: absolute;
   z-index: 1;
   border: solid black 0.75px;
-  width: 100px;
+  width: 120px;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px;
   right: 10px;
   top: 125px;
 }
@@ -142,6 +145,31 @@ main {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   border: solid black 0.75px;
+}
+
+.one-column, .two-columns {
+  padding-bottom: 30px;
+}
+
+table {
+  width: 100%;
+  border: solid black 0.75px;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+table th {
+  border-bottom: solid black 0.75px;
+  padding: 10px;
+}
+
+table tr {
+  text-align: center;
+  height: 30px;
+}
+
+table tr:nth-child(odd) {
+  background-color: whitesmoke;
 }
 
 /* ALERTS  */
@@ -274,7 +302,7 @@ main {
   }
 
   #main-nav menu {
-    grid-template-columns: auto auto;
+    padding-left: 0px;
   }
 
   .dropdown-content {
@@ -290,6 +318,23 @@ main {
     width: 300px;
     height: 100px;
   }
+
+  .columns-container {
+    width: 700px;
+    margin: auto;
+  }
+
+  .one-column p, .one-column li {
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+
+  .two-columns {
+    display: grid;
+    grid-template-columns: 340px 340px;
+    grid-column-gap: 20px;
+  }
+
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -309,6 +354,21 @@ main {
 
   .card-title {
     font-size: 16px;
+  }
+
+  .one-column {
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .columns-container {
+    width: 1000px;
+  }
+
+  .two-columns {
+    display: grid;
+    grid-template-columns: 450px 450px;
+    grid-column-gap: 20px;
   }
 } 
 
