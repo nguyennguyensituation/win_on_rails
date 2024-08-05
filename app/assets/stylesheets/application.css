@@ -73,6 +73,10 @@ header * {
   padding: 20px 20px 10px 20px;
 }
 
+#title a:hover {
+  text-decoration: none;
+}
+
 #main-nav {
   border-top: solid black 0.75px;
 }
@@ -83,12 +87,13 @@ header * {
 }
 
 #title img {
-  padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 10px;
 }
 
 #main-nav menu {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: auto auto;
   row-gap: 10px;
   font-size: 20px;
 }
@@ -99,6 +104,8 @@ header * {
 
 #profile-dropdown {
   cursor: pointer;
+  float: right;
+  padding-right: 40px;
 }
 
 #profile-dropdown img {
@@ -113,8 +120,14 @@ header * {
   z-index: 1;
   border: solid black 0.75px;
   width: 100px;
-  padding: 10px;
   font-size: 16px;
+  padding: 10px;
+  right: 10px;
+  top: 125px;
+}
+
+.dropdown-content * {
+  padding: 5px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -264,6 +277,11 @@ main {
     grid-template-columns: auto auto;
   }
 
+  .dropdown-content {
+    top: 55px;
+    right: 25px;
+  }
+
   #card-container {
     grid-template-columns: auto auto;
   }
@@ -301,7 +319,7 @@ main {
   }
 
   #card-container {
-    grid-template-columns: auto auto auto ;
+    grid-template-columns: auto auto auto;
   }
 }
 
