@@ -1,19 +1,17 @@
-<%= form_with model: [ @user, @user.wins.build ] do |form| %>
+<%= form_with model: [ @user, @user.wins.build ], class: "one-column" do |form| %>
+  <h2>Add a Win</h2>
   <%= form.label :title %>
-  <%= form.text_field :title, placeholder: "Enter a title", value: session[:title] %><br>
+  <%= form.text_field :title, value: session[:title] %><br>
 
   <%= form.label :description %>
-  <%= form.text_area :description, size: "60x10", placeholder: "Enter a description", value: session[:description]  %><br>
+  <%= form.text_area :description, value: session[:description] %><br>
 
   <%= form.label :category %>
   <%= form.select :category, ['milestone', 'project', 'kudos', 'learning', 'other'], include_blank: "Choose a category", selected: session[:category] %><br>
 
   <%= form.label "Date completed" %>
-  <%= form.date_select :accomplished_date, order: [:day, :month, :year], selected: populate_date || Date.today %><br>
+  <%= form.date_select(:accomplished_date, options = { order: [:day, :month, :year], use_short_month: true, selected: populate_date || Date.today }) %><br>
 
   <%= form.submit %><br>
+  <%= link_to "Cancel", cancel_path%>
 <% end %>
-
-<%= render "application/errors", errors: @errors %>
-
-<%= link_to "Cancel", cancel_path%>

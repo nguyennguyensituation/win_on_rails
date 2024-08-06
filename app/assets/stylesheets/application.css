@@ -27,7 +27,11 @@ a {
   color: black;
 }
 
-button {
+a:hover{
+  text-decoration: underline;
+}
+
+button, input[type=submit] {
   font-family: inherit;
   font-size: 1em;
   font-weight: 100;
@@ -36,10 +40,11 @@ button {
   background-color: transparent;
   padding: 10px;
   min-width: 100px;
+  cursor: pointer
 }
 
-a:hover, button:hover {
-  text-decoration: underline;
+button:hover, input[type=submit]:hover {
+  background-color: tomato;
 }
 
 /* IMAGES  */
@@ -105,10 +110,13 @@ header * {
   list-style: none;
 }
 
+#main-nav menu > :last-child {
+  text-align: right;
+  padding-right: 40px;
+}
+
 #profile-dropdown {
   cursor: pointer;
-  float: right;
-  padding-right: 40px;
 }
 
 #profile-dropdown img {
@@ -118,15 +126,16 @@ header * {
 
 .dropdown-content {
   display: none;
-  background-color: whitesmoke;
   position: absolute;
   z-index: 1;
-  border: solid black 0.75px;
-  width: 120px;
-  font-size: 16px;
-  padding: 5px;
   right: 10px;
   top: 125px;
+  width: 120px;
+  padding: 5px;
+  background-color: whitesmoke;
+  border: solid black 0.75px;
+  font-size: 16px;
+  text-align: left;
 }
 
 .dropdown-content * {
@@ -172,10 +181,76 @@ table tr:nth-child(odd) {
   background-color: whitesmoke;
 }
 
+/* FORMS  */
+
+form {
+  width: 100%;
+  margin: auto;
+}
+
+.user-form {
+  width: 420px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type=text], input[type=submit], input[type=password], textarea, select {
+  margin-bottom: 20px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input[type=text], input[type=password], textarea, label {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+}
+
+input:focus, textarea:focus {
+  outline: tomato solid 2px;
+}
+
+input[type=password] {
+  -webkit-text-stroke-width: 0.2em;
+  letter-spacing: 0.2em;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 200px;
+}
+
 /* ALERTS  */
 
 .flash {
   background-color: cornflowerblue;
+}
+
+.errors {
+  position: absolute;
+  width: 430px;
+  padding: 10px;
+  left: calc((100% - 450px) / 2);
+
+  background-color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  display: grid;
+  grid-template-columns: 40px auto;
+  column-gap: 5px;
+}
+
+.errors img {
+  padding-top: 20px;
+}
+
+ul {
+  padding-inline-start: 20px;
 }
 
 /* CARDS  */
@@ -265,6 +340,18 @@ table tr:nth-child(odd) {
 
 .other {
   outline-color: #f1e6d0;
+}
+
+/* ANIMATIONS  */
+
+.bounce {
+  animation: bounce 2s ease 3;
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
 }
 
 /* MEDIA QUERIES  */

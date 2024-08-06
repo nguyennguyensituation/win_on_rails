@@ -1,7 +1,10 @@
 <% if errors %>
-  <ul>
+  <div role="alert" class="errors" >
+    <%= image_tag("clippy-icon.png", alt: "error icon", class: "medium-icon bounce")%>
+    <ul>
     <% errors.each do |error| %>
       <li><%= error %></li>
     <% end %>
   </ul>
+  </div>
 <% end %>

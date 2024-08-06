@@ -1,20 +1,16 @@
-<%= form_with model: @user do |form| %>
+<%= form_with model: @user, class: "one-column user-form" do |form| %>
   <h2>Create New Account</h2>
 
   <%= form.label :username %>
-  <%= form.text_field :username, placeholder: "Enter a username", value: session[:username_entered] %><br>
+  <%= form.text_field :username, value: session[:username_entered] %><br>
 
   <%= form.label :password %>
-  <%= form.password_field :password, placeholder: "Enter a password" %><br>
+  <%= form.password_field :password %><br>
 
   <%= form.label :password_confirmation %>
-  <%= form.password_field :password_confirmation, placeholder: "Enter your password again" %><br>
+  <%= form.password_field :password_confirmation %><br>
 
   <%= form.submit "Create Account" %><br>
-<% end %>
 
-<%= render "application/errors", errors: @errors %>
-
-<nav>
   <%= link_to "Cancel", root_path %>
-</nav>
+<% end %>

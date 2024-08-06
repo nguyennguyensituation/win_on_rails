@@ -1,16 +1,14 @@
-<%= form_tag sessions_path do %>
+<%= form_tag sessions_path, class: "one-column user-form" do %>
   <h2>Sign in</h2>
   
   <%= label_tag "Username" %>
-  <%= text_field_tag :username, nil, placeholder: "Enter your username...", value: session[:username_entered] %><br>
+  <%= text_field_tag :username, nil, value: session[:username_entered] %><br>
 
 
   <%= label_tag "Password" %>
-  <%= password_field_tag :password, nil, placeholder: "Enter your password..." %><br>
+  <%= password_field_tag :password, nil %><br>
 
   <%= submit_tag "Sign In" %><br>
 
   <%= link_to "Create new account", create_account_path%>
 <% end %>
-
-<%= render "application/errors", errors: @errors %>
