@@ -1,18 +1,24 @@
-<menu>
-  <%= link_to "Edit", edit_user_win_path %>
-  <%= link_to "Delete", user_win_path,  method: :delete, data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure you want to delete this win?"
-                  } %>
-</menu>
+<div class="one-column">
+  <article class="card-detail <%= @win.category %>">
+    <div class="card-detail-logo">
+      <%= image_tag("card-icon-#{@win.category}.png", alt: "profile icon", class: "large-icon card-icon" ) %>
+      <h4><%= @win.category %></h4>
+    </div>
+    
+    <h3><%= @win.title %></h3>
+    <p><%= @win.description %></p>
+    <p><%= format_date(@win.accomplished_date) %></p>
 
-<article class="card">
-  <h3><%= @win.title %></h3>
-  <p><%= @win.category %></p>
-  <p><%= format_date(@win.accomplished_date) %></p>
-  <p><%= @win.description %></p>
-</article>
+    <menu>
+      <%= link_to "Edit", edit_user_win_path %>
+      <%= link_to "Delete", user_win_path,  method: :delete, data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure you want to delete this win?"
+                      } %>
+    </menu>
+  </article>
+</div>
 
-<nav>
-  <%= link_to "Go back", user_path(@user) %>
-</nav>
+  <nav>
+    <%= link_to "Go back", user_path %>
+  </nav>

@@ -13,5 +13,5 @@
   <%= form.date_select(:accomplished_date, options = { order: [:day, :month, :year], use_short_month: true, selected: populate_date || Date.today }) %><br>
 
   <%= form.submit %><br>
-  <%= link_to "Cancel", cancel_path%>
+  <%= link_to "Cancel", user_path(@user) %>
 <% end %>

@@ -26,6 +26,7 @@ class WinsController < ApplicationController
 
   def edit
     @errors = flash[:errors]
+    session[:current_win_id] = @win.id;
   end
 
   def update
@@ -34,6 +35,7 @@ class WinsController < ApplicationController
     if edited_win.valid?
       @win.update(win_params)
       reset_session_form_values
+      reset_current_win_id
       redirect_to user_win_path, notice: "#{@win.title} has been updated."
     else
       set_session_form_values
@@ -49,7 +51,9 @@ class WinsController < ApplicationController
 
   def cancel
     reset_session_form_values
-    redirect_to @user
+    @win = @user.wins.find(session[:current_win_id])
+    reset_current_win_id
+    redirect_to user_win_path({ user_id: @user.id, id: @win.id })
   end
 
   private
@@ -62,6 +66,10 @@ class WinsController < ApplicationController
 
   def reset_session_form_values
     FIELDS.each { |field| session[field] = nil } 
+  end
+
+  def reset_current_win_id
+    session[:current_win_id] = nil
   end
 
   def win_params
