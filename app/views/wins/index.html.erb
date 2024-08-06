@@ -1,6 +1,6 @@
 <h2>My Wins</h2>
-<menu>
-  <%= link_to "Add win", new_user_win_path(@user) %>
+<menu id="wins-menu">
+  <%= button_to "+ Add win", new_user_win_path(@user), method: :get , id: "add-win-btn" %>
 </menu>
 
 <section id="card-container">

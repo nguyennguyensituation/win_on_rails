@@ -44,7 +44,12 @@ button, input[type=submit] {
 }
 
 button:hover, input[type=submit]:hover {
-  background-color: tomato;
+  background-color: cornflowerblue;
+}
+
+menu {
+  padding: 0;
+  margin: 0;
 }
 
 /* IMAGES  */
@@ -104,6 +109,7 @@ header * {
   display: grid;
   grid-template-columns: auto auto;
   font-size: 20px;
+  padding: 20px 40px;
 }
 
 #main-nav li {
@@ -112,7 +118,6 @@ header * {
 
 #main-nav menu > :last-child {
   text-align: right;
-  padding-right: 40px;
 }
 
 #profile-dropdown {
@@ -133,7 +138,13 @@ header * {
   width: 120px;
   padding: 5px;
   background-color: whitesmoke;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   border: solid black 0.75px;
+  border-top: none;
+  /* -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; */
   font-size: 16px;
   text-align: left;
 }
@@ -181,6 +192,12 @@ table tr:nth-child(odd) {
   background-color: whitesmoke;
 }
 
+/* WINS MENU/FILTER  */
+
+#wins-menu {
+  padding: 0 20px 20px 0;
+}
+
 /* FORMS  */
 
 form {
@@ -208,8 +225,8 @@ input[type=text], input[type=password], textarea, label {
   border-radius: 5px;
 }
 
-input:focus, textarea:focus {
-  outline: tomato solid 2px;
+input:focus, textarea:focus, select:focus {
+  outline: cornflowerblue solid 2px;
 }
 
 input[type=password] {
@@ -225,18 +242,15 @@ textarea {
 /* ALERTS  */
 
 .flash {
-  background-color: cornflowerblue;
-}
-
-.errors {
   position: absolute;
-  width: 430px;
+  width: 400px;
   padding: 10px;
-  left: calc((100% - 450px) / 2);
-
+  left: calc((100% - 420px) / 2);
   background-color: white;
+  opacity: 0.95;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  border-top: solid black 0.75px;
   -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
   -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -245,8 +259,8 @@ textarea {
   column-gap: 5px;
 }
 
-.errors img {
-  padding-top: 20px;
+.flash p {
+  padding-left: 10px;
 }
 
 ul {
@@ -272,7 +286,7 @@ ul {
   border-radius: 20px;
   outline: 1px solid black;
   outline-offset: -10px;
-  width: 400px;
+  width: 90%;
   height: 75px;
   padding: 20px;
   display: grid;
@@ -289,7 +303,7 @@ ul {
 }
 
 .card:hover {
-  transform: translate(0px, -10px);
+  transform: translate(0px, -5px);
 }
 
 .card-logo {
@@ -354,6 +368,16 @@ ul {
 	60% {transform: translateY(-15px);}
 }
 
+.shake {
+  animation: shake 1s ease 1;
+}
+
+@keyframes shake {
+	0%, 100% {transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
 /* MEDIA QUERIES  */
 
 /* Extra small devices (phones, 600px and down) */
@@ -398,11 +422,11 @@ ul {
   }
 
   #card-container {
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
+    padding-right: 10px;
   }
 
   .card {
-    width: 300px;
     height: 100px;
   }
 
@@ -431,12 +455,8 @@ ul {
   }
 
   #card-container {
-    grid-template-columns: auto auto auto;
-  }
-
-  .card {
-    width: 250px;
-    height: 200px;
+    grid-template-columns: 33% 33% 33%;
+    padding-right: 20px;
   }
 
   .card-title {
@@ -464,10 +484,6 @@ ul {
   body {
     background-color: blue;
   }
-
-  #card-container {
-    grid-template-columns: auto auto auto;
-  }
 }
 
 @media only screen and (min-width: 1475px) {
@@ -476,6 +492,7 @@ ul {
   }
 
   #card-container {
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    padding-right: 30px;
   }
 }
