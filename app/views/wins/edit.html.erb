@@ -1,6 +1,7 @@
-<h2>Edit Win</h2>
 
-<%= form_with model: @win, url: user_win_path, method: :patch, local: true do |form| %>
+
+<%= form_with model: @win, url: user_win_path, method: :patch, local: true, class: "one-column" do |form| %>
+  <h2>Edit Win</h2>
   <%= form.label :title %>
   <%= form.text_field :title, value: session[:title] || @win.title %><br>
 
@@ -14,8 +15,8 @@
   <%= form.date_select :accomplished_date, order: [:day, :month, :year], selected: populate_date || @win.accomplished_date %><br>
 
   <%= form.submit %><br>
+  <%= link_to "Cancel", cancel_path %>
 <% end %>
 
-<%= render "application/errors", errors: @errors %>
 
-<%= link_to "Cancel", cancel_path %>
+
