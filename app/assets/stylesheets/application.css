@@ -196,6 +196,21 @@ table tr:nth-child(odd) {
   padding: 0 20px 20px 0;
 }
 
+.pagy {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+.pagy a {
+  text-decoration: none;
+  padding: 10px;
+}
+
+a.current {
+  text-decoration: underline;
+}
+
 /* FORMS  */
 
 form {

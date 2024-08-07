@@ -1,9 +1,12 @@
 class WinsController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_user
   before_action :set_win, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @wins = @user.wins.sort_by { |win| win.accomplished_date }
+  def index    
+    limit = 8
+    @pagy, @wins = pagy(@user.wins.order(accomplished_date: :asc, title: :asc), limit: limit)
   end
 
   def new
