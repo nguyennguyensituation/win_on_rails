@@ -5,8 +5,18 @@ class WinsController < ApplicationController
   before_action :set_win, only: [:show, :edit, :update, :destroy]
 
   def index    
+    session[:current_page] = params[:page] || 1
+    
+
     limit = 8
-    @pagy, @wins = pagy(@user.wins.order(accomplished_date: :asc, title: :asc), limit: limit)
+    @categories = ['any', 'kudos', 'learning', 'milestone', 'project', 'other']
+    all_wins = @user.wins
+    set_win_date_range(all_wins)
+    
+    filtered_wins = all_wins.order(accomplished_date: :asc, title: :asc)
+    session[:total_filtered_wins] = filtered_wins.length;
+
+    @pagy, @wins = pagy(filtered_wins, limit: limit, size: 3)
   end
 
   def new
@@ -63,6 +73,14 @@ class WinsController < ApplicationController
   
   FIELDS = ['title', 'description', 'category', 'accomplished_date(1i)', 'accomplished_date(2i)', 'accomplished_date(3i)']
 
+  def set_win
+    @win = @user.wins.find(params[:id])
+  end
+
+  def win_params
+    params.require(:win).permit(:title, :description, :category, :accomplished_date)
+  end
+
   def set_session_form_values
     FIELDS.each { |field| session[field] = win_params[field] }
   end
@@ -75,11 +93,14 @@ class WinsController < ApplicationController
     session[:current_win_id] = nil
   end
 
-  def win_params
-    params.require(:win).permit(:title, :description, :category, :accomplished_date)
-  end
-
-  def set_win
-    @win = @user.wins.find(params[:id])
+  def set_win_date_range(wins)
+    if wins.empty?
+      session[:earliest_win_date] = Date.today
+      session[:latest_win_date] = Date.today
+    else
+      sorted_wins = wins.order(accomplished_date: :asc)
+      session[:earliest_win_date] = sorted_wins.first.accomplished_date
+      session[:latest_win_date] = sorted_wins.last.accomplished_date
+    end
   end
 end

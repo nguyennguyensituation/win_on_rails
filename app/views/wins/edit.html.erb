@@ -12,7 +12,7 @@
   <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'], selected: session[:category] || @win.category %><br>
 
   <%= form.label "Date completed" %>
-  <%= form.date_select :accomplished_date, order: [:day, :month, :year], selected: populate_date || @win.accomplished_date %><br>
+  <%= form.date_select :accomplished_date, order: [:day, :month, :year], use_short_month: true, selected: populate_date || @win.accomplished_date %><br>
 
   <%= form.submit %><br>
   <%= link_to "Cancel", cancel_path %>

@@ -1,5 +1,28 @@
 <h2>My Wins</h2>
+<menu id="filter-panel">
+  <%= form_with(url: user_wins_path, method: :get) do |form| %>
+    <h3>Filter</h3>
+
+    <%= form.label :from %>
+    <%= form.date_select :from, order: [:day, :month, :year], use_short_month: true, default: session[:earliest_win_date] %><br>
+
+    <%= form.label :to %>
+    <%= form.date_select :to, order: [:day, :month, :year], use_short_month: true, default: session[:latest_win_date] %><br>
+
+    <%= form.submit "Filter wins" %><br>
+
+    <%= link_to "Reset filter" %>
+
+<% end %>
+</menu>
+
+
 <menu id="wins-menu">
+  <%= link_to "#", id: "filter-panel-btn" do %>
+    <%= image_tag "filter-icon.png", class: "small-icon" %>
+  <% end %>
+    
+  <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>
   <%= button_to "+ Add win", new_user_win_path(@user), method: :get , id: "add-win-btn" %>
 </menu>
 

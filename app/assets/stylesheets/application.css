@@ -34,7 +34,7 @@ a:hover{
 button, input[type=submit] {
   font-family: inherit;
   font-size: 1em;
-  font-weight: 100;
+  font-weight: 300;
   border-radius: 10px;
   border: solid black 0.75px;
   background-color: transparent;
@@ -135,7 +135,7 @@ header * {
   position: absolute;
   z-index: 1;
   right: 10px;
-  top: 125px;
+  top: 140px;
   width: 120px;
   padding: 5px;
   background-color: whitesmoke;
@@ -145,6 +145,9 @@ header * {
   border-top: none;
   font-size: 16px;
   text-align: left;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .dropdown-content * {
@@ -190,10 +193,32 @@ table tr:nth-child(odd) {
   background-color: whitesmoke;
 }
 
-/* WINS MENU/FILTER  */
+/* WINS MENU  */
 
 #wins-menu {
   padding: 0 20px 20px 0;
+  display: grid;
+  grid-template-columns: 50px auto auto;
+}
+
+#filter-panel-btn {
+  cursor: pointer;
+}
+
+#filter-panel-btn img {
+  vertical-align: bottom;
+}
+
+#filter-panel-btn:hover img {
+  transform: scale(1.2);
+}
+
+#wins-menu p {
+  margin-block-start: 0;
+}
+
+#add-win-btn {
+  float: right;
 }
 
 .pagy {
@@ -209,6 +234,24 @@ table tr:nth-child(odd) {
 
 a.current {
   text-decoration: underline;
+}
+
+/* FILTERS */
+
+#filter-panel {
+  background-color: whitesmoke;
+  width: 200px;
+  padding: 20px;
+  position: fixed;
+  z-index: 1;
+  top: 100;
+  left: 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: solid black 0.75px;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 /* FORMS  */
@@ -230,6 +273,7 @@ input[type=text], input[type=submit], input[type=password], textarea, select {
   margin-bottom: 20px;
   font-family: inherit;
   font-size: inherit;
+  padding: 10px;
 }
 
 input[type=text], input[type=password], textarea, label {
@@ -250,6 +294,11 @@ input[type=password] {
 
 textarea {
   height: 200px;
+}
+
+select {
+  appearance: none;
+  padding: 5px;
 }
 
 /* ALERTS  */
@@ -331,7 +380,7 @@ ul {
 .card .card-category {
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 100;
+  font-weight: 300;
   padding-left: 5px;
 }
 
@@ -344,7 +393,6 @@ ul {
 
 .card .card-title {
   font-weight: 300;
-  font-style: italic;
   padding-left: 10px;
   font-size: 14px;
 }
@@ -457,7 +505,7 @@ ul {
   }
 
   .dropdown-content {
-    top: 55px;
+    top: 70px;
     right: 25px;
   }
 
