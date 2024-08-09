@@ -1,6 +1,9 @@
 <h2>My Wins</h2>
-<menu id="filter-panel">
+<menu id="filter-panel" class="hide">
   <%= form_with(url: user_wins_path, method: :get) do |form| %>
+    <%= link_to "#", id:"close-filter-btn" do %>
+      &times;
+   <% end %>
     <h3>Filter</h3>
 
     <%= form.label :from %>
@@ -10,17 +13,14 @@
     <%= form.date_select :to, order: [:day, :month, :year], use_short_month: true, default: session[:latest_win_date] %><br>
 
     <%= form.submit "Filter wins" %><br>
-
-    <%= link_to "Reset filter" %>
-
 <% end %>
 </menu>
 
 
 <menu id="wins-menu">
-  <%= link_to "#", id: "filter-panel-btn" do %>
-    <%= image_tag "filter-icon.png", class: "small-icon" %>
-  <% end %>
+   <%= link_to "#", id:"open-filter-btn" do %>
+     <%= image_tag "filter-icon.png", class: "small-icon" %>
+   <% end %>
     
   <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>
   <%= button_to "+ Add win", new_user_win_path(@user), method: :get , id: "add-win-btn" %>
@@ -47,3 +47,18 @@
 
 <%= pagy_nav(@pagy).html_safe %>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const openFilterBtn = document.getElementById('open-filter-btn');
+    const closeFilterBtn = document.getElementById('close-filter-btn');
+    const filterPanel = document.getElementById('filter-panel');
+
+    function toggleDisplay(event) {
+      filterPanel.classList.toggle('hide');
+      event.stopPropagation();
+    }
+
+    openFilterBtn.addEventListener('click', toggleDisplay)
+    closeFilterBtn.addEventListener('click', toggleDisplay)
+  })
+</script>
