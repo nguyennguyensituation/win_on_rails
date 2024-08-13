@@ -1,22 +1,20 @@
 <h2>My Wins</h2>
 
-<% if !@wins.empty? %>
-  <menu id="filter-container">
-    <h3>Filter</h3>
-    <%= form_with(url: filter_path, method: :post, id: "wins-filter") do |form| %>
-      <fieldset id="date-filter">
-        <%= form.label :from %>
-        <%= form.date_select :date_start, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_start]) %>
+<menu id="filter-container">
+  <h3>Filter</h3>
+  <%= form_with(url: filter_path, method: :post, id: "wins-filter") do |form| %>
+    <fieldset id="date-filter">
+      <%= form.label :from %>
+      <%= form.date_select :date_start, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_start]) %>
 
-        <%= form.label :to %>
-        <%= form.date_select :date_end, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]) %>
-      </fieldset>
+      <%= form.label :to %>
+      <%= form.date_select :date_end, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]) %>
+    </fieldset>
 
-      <%= form.submit "Filter", id: "submit-filter-btn" %>
-      <%= link_to "Reset", reset_filter_path %>
-    <% end %>
-  </menu>
-<% end %>
+    <%= form.submit "Filter", id: "submit-filter-btn" %>
+    <%= link_to "Reset", reset_filter_path %>
+  <% end %>
+</menu>
 
 <section id="win-summary">
     <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>

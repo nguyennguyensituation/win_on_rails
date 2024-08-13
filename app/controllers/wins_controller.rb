@@ -25,9 +25,6 @@ class WinsController < ApplicationController
   end
 
   def reset_filter
-    puts "=========================>"
-    puts "resetting filter"
-    puts "=========================>"
     set_default_filter
     redirect_to user_wins_path(@user)
   end
@@ -44,7 +41,8 @@ class WinsController < ApplicationController
       reset_win_form_values
       set_earliest_and_latest_win_dates(@user.wins)
       set_default_filter
-      redirect_to user_wins_path(@user), notice: "#{@win[:title]} added!"
+      redirect_to user_win_path({ user_id: @user.id, id: @win.id }), notice: "#{@win[:title]} added!"
+      # redirect_to user_wins_path(@user), notice: "#{@win[:title]} added!"
     else
       set_win_form_values
       flash[:errors] = @win.errors.full_messages
