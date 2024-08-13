@@ -1,30 +1,26 @@
 <h2>My Wins</h2>
-<menu id="filter-panel" class="hide">
-  <%= form_with(url: user_wins_path, method: :get) do |form| %>
-    <%= link_to "#", id:"close-filter-btn" do %>
-      &times;
-   <% end %>
+
+<% if !@wins.empty? %>
+  <menu id="filter-container">
     <h3>Filter</h3>
+    <%= form_with(url: filter_path, method: :post, id: "wins-filter") do |form| %>
+      <fieldset id="date-filter">
+        <%= form.label :from %>
+        <%= form.date_select :date_start, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_start]) %>
 
-    <%= form.label :from %>
-    <%= form.date_select :from, order: [:day, :month, :year], use_short_month: true, default: session[:earliest_win_date] %><br>
+        <%= form.label :to %>
+        <%= form.date_select :date_end, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]) %>
+      </fieldset>
 
-    <%= form.label :to %>
-    <%= form.date_select :to, order: [:day, :month, :year], use_short_month: true, default: session[:latest_win_date] %><br>
-
-    <%= form.submit "Filter wins" %><br>
+      <%= form.submit "Filter", id: "submit-filter-btn" %>
+    <% end %>
+  </menu>
 <% end %>
-</menu>
 
-
-<menu id="wins-menu">
-   <%= link_to "#", id:"open-filter-btn" do %>
-     <%= image_tag "filter-icon.png", class: "small-icon" %>
-   <% end %>
-    
-  <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>
-  <%= button_to "+ Add win", new_user_win_path(@user), method: :get , id: "add-win-btn" %>
-</menu>
+<section id="win-summary">
+    <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>
+    <%= button_to "+ Add win", new_user_win_path(@user), method: :get , id: "add-win-btn" %>
+</section>
 
 <section id="card-container">
   <% if @wins.empty? %>
@@ -46,19 +42,3 @@
 </section>
 
 <%= pagy_nav(@pagy).html_safe %>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const openFilterBtn = document.getElementById('open-filter-btn');
-    const closeFilterBtn = document.getElementById('close-filter-btn');
-    const filterPanel = document.getElementById('filter-panel');
-
-    function toggleDisplay(event) {
-      filterPanel.classList.toggle('hide');
-      event.stopPropagation();
-    }
-
-    openFilterBtn.addEventListener('click', toggleDisplay)
-    closeFilterBtn.addEventListener('click', toggleDisplay)
-  })
-</script>
