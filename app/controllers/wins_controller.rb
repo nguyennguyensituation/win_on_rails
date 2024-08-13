@@ -1,5 +1,6 @@
 class WinsController < ApplicationController
   include Pagy::Backend
+  include SessionMethods
 
   before_action :set_user
   before_action :set_win, only: [:show, :edit, :update, :destroy]
@@ -23,6 +24,14 @@ class WinsController < ApplicationController
     redirect_to user_wins_path(@user)
   end
 
+  def reset_filter
+    puts "=========================>"
+    puts "resetting filter"
+    puts "=========================>"
+    set_default_filter
+    redirect_to user_wins_path(@user)
+  end
+
   def new
     @errors = flash[:errors]
   end
@@ -33,6 +42,8 @@ class WinsController < ApplicationController
     if @win.valid?
       @win.save
       reset_win_form_values
+      set_earliest_and_latest_win_dates(@user.wins)
+      set_default_filter
       redirect_to user_wins_path(@user), notice: "#{@win[:title]} added!"
     else
       set_win_form_values
@@ -53,6 +64,7 @@ class WinsController < ApplicationController
       @win.update(win_params)
       reset_win_form_values
       reset_current_win_id
+      set_earliest_and_latest_win_dates(@user.wins)
       redirect_to user_win_path, notice: "#{@win.title} has been updated."
     else
       set_win_form_values
@@ -63,6 +75,7 @@ class WinsController < ApplicationController
 
   def destroy
     @win.destroy
+    set_earliest_and_latest_win_dates(@user.wins)
     redirect_to @user, notice: "#{@win.title} has been deleted."
   end
 
@@ -105,5 +118,10 @@ class WinsController < ApplicationController
     ['date_start', 'date_end'].each { |field|
       session[field] = Date.new(*get_date_filter_values(field))
     }
+  end
+
+  def set_default_filter
+    session[:date_start] = session[:earliest_win_date]
+    session[:date_end] = session[:latest_win_date] 
   end
 end

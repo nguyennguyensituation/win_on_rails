@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include SessionMethods
   before_action :authorized, only: [:show]
   before_action :set_user, only: [:my_account, :destroy]
   
@@ -15,9 +16,9 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       @user.save
-      session[:user_id] = @user.id
+      set_session_variables(@user)
       session[:password_length] = user_params[:password].length
-      redirect_to @user, notice: "Welcome, #{@user[:username].capitalize}!"
+      redirect_to @user, notice: "Welcome, #{session[:username]}!"
     else  
       session[:username_entered] = user_params[:username]
       flash[:errors] = @user.errors.full_messages

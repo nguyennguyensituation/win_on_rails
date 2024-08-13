@@ -68,7 +68,7 @@ menu {
   width: 60px;
 }
 
-/* MAIN HEADER  */
+/* HEADER  */
 
 header {
   background-color: whitesmoke;
@@ -204,6 +204,7 @@ table tr:nth-child(odd) {
 
 #filter-container {
   border-bottom: solid black 0.75px;
+  padding-bottom: 20px;
 }
 
 fieldset {
@@ -495,7 +496,7 @@ ul {
   }
 
   .dropdown-content {
-    top: 57px;
+    top: 70px;
     right: 25px;
   }
 

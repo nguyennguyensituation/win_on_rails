@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get "/cancel", to: "wins#cancel"
   post "/filter", to: "wins#filter"
+  get "/reset_filter", to: "wins#reset_filter"
 
   resources :users do
     resources :wins
