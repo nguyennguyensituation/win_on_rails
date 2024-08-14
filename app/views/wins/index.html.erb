@@ -1,6 +1,8 @@
 <h2>My Wins</h2>
 
-<menu id="filter-container">
+<menu id="filter-container" class="hide">
+  <%= button_tag "✕", id: "close-filter-btn" %>
+
   <h3>Filter</h3>
   <%= form_with(url: filter_path, method: :post, id: "wins-filter") do |form| %>
     <fieldset id="date-filter">
@@ -12,9 +14,11 @@
     </fieldset>
 
     <%= form.submit "Filter", id: "submit-filter-btn" %>
-    <%= link_to "Reset", reset_filter_path %>
+    <%= link_to "Reset", reset_filter_path, id: "reset-filter-btn" %>
   <% end %>
 </menu>
+
+<%= button_tag image_tag("filter-icon.png", class: "small-icon"), id: "open-filter-btn" %>
 
 <section id="win-summary">
     <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>
@@ -41,3 +45,15 @@
 </section>
 
 <%= pagy_nav(@pagy).html_safe %>
+
+<script>
+  function toggleFilter() {
+    const filterContainer = document.querySelector("#filter-container");
+
+    filterContainer.classList.toggle('hide');
+    filterContainer.classList.toggle('show');
+  }
+  
+  document.querySelector("#open-filter-btn").addEventListener('click', toggleFilter)
+  document.querySelector("#close-filter-btn").addEventListener('click', toggleFilter)
+</script>

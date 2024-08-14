@@ -202,9 +202,55 @@ table tr:nth-child(odd) {
 
 /* WINS FILTER/SUMMARY  */
 
+#open-filter-btn {
+  border: none;
+  min-width: 40px;
+  padding-left: 0;
+}
+
+#open-filter-btn:hover {
+  background-color: inherit;
+  
+  img {
+    width: 22px;
+  }
+}
+
+#close-filter-btn {
+  float:right;
+  min-width: 50px;
+  border: none;
+}
+
+#close-filter-btn:hover {
+  background-color: inherit;
+  color: black;
+  font-size: 18px;
+}
+
 #filter-container {
-  border-bottom: solid black 0.75px;
-  padding-bottom: 20px;
+  position: fixed;
+  z-index: 1;
+  top: 100;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.3s;
+  background-color: whitesmoke;
+  border: solid black 0.75px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+}
+
+.hide {
+  width: 0px;
+}
+
+.show {
+  width: 250px;
+  padding-left: 20px;
 }
 
 fieldset {
@@ -222,6 +268,10 @@ fieldset {
 
 #submit-filter-btn {
   width: 100px;
+}
+
+#reset-filter-btn {
+  padding-bottom: 20px;
 }
 
 #add-win-btn {
