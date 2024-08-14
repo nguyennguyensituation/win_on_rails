@@ -2,13 +2,13 @@
   <h2>Create New Account</h2>
 
   <%= form.label :username %>
-  <%= form.text_field :username, value: session[:username_entered] %><br>
+  <%= form.text_field :username, value: session[:username_entered], placeholder: "Must contain at least 3 characters" %><br>
 
   <%= form.label :password %>
-  <%= form.password_field :password %><br>
+  <%= form.password_field :password, placeholder: "Must contain at least 8 characters" %><br>
 
   <%= form.label :password_confirmation %>
-  <%= form.password_field :password_confirmation %><br>
+  <%= form.password_field :password_confirmation, placeholder: "Re-enter your password" %><br>
 
   <%= form.submit "Create Account" %><br>
 

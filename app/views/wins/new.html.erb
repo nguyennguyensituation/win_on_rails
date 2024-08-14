@@ -1,10 +1,10 @@
 <%= form_with model: [ @user, @user.wins.build ], class: "one-column" do |form| %>
   <h2>Add a Win</h2>
   <%= form.label :title %>
-  <%= form.text_field :title, value: session[:title] %><br>
+  <%= form.text_field :title, value: session[:title], placeholder: "Must be at least 3 characters" %><br>
 
   <%= form.label :description %>
-  <%= form.text_area :description, value: session[:description] %><br>
+  <%= form.text_area :description, value: session[:description], placeholder: "Must be at least 3 characters" %><br>
 
   <%= form.label :category %>
   <%= form.select :category, ['milestone', 'project', 'kudos', 'learning', 'other'], include_blank: "Choose a category", selected: session[:category] %><br>

@@ -278,8 +278,6 @@ input:focus, textarea:focus, select:focus {
 }
 
 input[type=password] {
-  -webkit-text-stroke-width: 0.2em;
-  letter-spacing: 0.2em;
   border-radius: 5px;
 }
 
