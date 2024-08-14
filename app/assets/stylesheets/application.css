@@ -249,7 +249,7 @@ table tr:nth-child(odd) {
 }
 
 .show {
-  width: 250px;
+  width: 200px;
   padding-left: 20px;
 }
 
@@ -264,6 +264,15 @@ fieldset {
 #date-filter{
   border: none;
   padding-left: 0;
+}
+
+#category-filter {
+  padding-left: 0;
+}
+
+.checkbox-option {
+  display: grid;
+  grid-template-columns: 25px auto;
 }
 
 #submit-filter-btn {

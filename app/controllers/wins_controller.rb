@@ -7,7 +7,7 @@ class WinsController < ApplicationController
 
   def index  
     session[:current_page] = params[:page] || 1
-    @categories = ['any', 'kudos', 'learning', 'milestone', 'project', 'other']
+    @categories = ['kudos', 'learning', 'milestone', 'project', 'other']
     all_wins = @user.wins
     limit = 10
 
@@ -18,6 +18,17 @@ class WinsController < ApplicationController
 
     @pagy, @wins = pagy(filtered_wins, limit: limit, size: 3)
   end
+
+reference = {
+  "kudos"=>"1",
+  "learning"=>"1",
+  "milestone"=>"1",
+  "project"=>"1",
+  "other"=>"1",
+  "commit"=>"Filter",
+  "controller"=>"wins",
+  "action"=>"filter"
+}
 
   def filter
     set_custom_date_range

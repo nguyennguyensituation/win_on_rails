@@ -10,7 +10,17 @@
       <%= form.date_select :date_start, options = { order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_start]), start_year: Date.today.year - 5, end_year: Date.today.year } %>
 
       <%= form.label :to %>
-      <%= form.date_select :date_end, options = { order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]), end_year: Date.today.year } %>
+      <%= form.date_select :date_end, options = { order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]), start_year: Date.today.year - 5, end_year: Date.today.year } %>
+    </fieldset>
+
+    <fieldset id="category-filter">
+      <%= form.label :category %>
+      <% @categories.each do |category| %>
+        <span class="checkbox-option">
+          <%= check_box_tag(category, 1, true) %>
+          <%= label_tag(category, category) %>
+        </span>
+      <% end %>
     </fieldset>
 
     <%= form.submit "Filter", id: "submit-filter-btn" %>
@@ -26,20 +36,16 @@
 </section>
 
 <section id="card-container">
-  <% if @wins.empty? %>
-    <p>It looks like you haven't added any wins yet.</p>
-  <% else %>
-    <% @wins.each do |win| %>
-      <%= link_to user_win_path(id: win.id) do %>
-      <article class="card <%= win.category %>">
-        <div class="card-logo">
-          <%= image_tag("card-icon-#{win.category}.png", alt: "profile icon", class: "medium-icon card-icon" ) %>
-          <h4 class="card-category"><%= win.category %></h4>
-        </div>
-        <p class="card-date"><%= format_date(win.accomplished_date) %></p>
-        <h3 class="card-title"><%= win.title %></h3>
-      </article>
-      <% end %>
+  <% @wins.each do |win| %>
+    <%= link_to user_win_path(id: win.id) do %>
+    <article class="card <%= win.category %>">
+      <div class="card-logo">
+        <%= image_tag("card-icon-#{win.category}.png", alt: "profile icon", class: "medium-icon card-icon" ) %>
+        <h4 class="card-category"><%= win.category %></h4>
+      </div>
+      <p class="card-date"><%= format_date(win.accomplished_date) %></p>
+      <h3 class="card-title"><%= win.title %></h3>
+    </article>
     <% end %>
   <% end %>
 </section>
@@ -53,7 +59,7 @@
     filterContainer.classList.toggle('hide');
     filterContainer.classList.toggle('show');
   }
-  
+
   document.querySelector("#open-filter-btn").addEventListener('click', toggleFilter)
   document.querySelector("#close-filter-btn").addEventListener('click', toggleFilter)
 </script>
