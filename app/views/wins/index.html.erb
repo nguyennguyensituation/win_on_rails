@@ -5,10 +5,10 @@
   <%= form_with(url: filter_path, method: :post, id: "wins-filter") do |form| %>
     <fieldset id="date-filter">
       <%= form.label :from %>
-      <%= form.date_select :date_start, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_start]) %>
+      <%= form.date_select :date_start, options = { order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_start]), start_year: Date.today.year - 5, end_year: Date.today.year } %>
 
       <%= form.label :to %>
-      <%= form.date_select :date_end, order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]) %>
+      <%= form.date_select :date_end, options = { order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]), end_year: Date.today.year } %>
     </fieldset>
 
     <%= form.submit "Filter", id: "submit-filter-btn" %>
