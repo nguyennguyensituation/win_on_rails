@@ -23,6 +23,12 @@
       <% end %>
     </fieldset>
 
+    <fieldset id="sort-by-filter">
+      <%= form.label :sort_by %>
+      <%= form.select :sort_by, ['newest first', 'oldest first'], selected: populate_sort_by %>
+
+    </fieldset>
+
     <%= form.submit "Filter", id: "submit-filter-btn" %>
     <%= link_to "Reset", reset_filter_path, id: "reset-filter-btn" %>
   <% end %>

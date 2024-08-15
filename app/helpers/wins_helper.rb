@@ -5,4 +5,8 @@ module WinsHelper
 
     return Date.new(year, month, day) if isValidDate
   end
+
+  def populate_sort_by
+    session[:sort_by] === 'desc' ? 'newest first' : 'oldest first'
+  end
 end

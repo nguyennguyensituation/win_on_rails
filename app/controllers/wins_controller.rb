@@ -8,16 +8,18 @@ class WinsController < ApplicationController
   def index  
     session[:current_page] = params[:page] || 1
     @categories = CATEGORIES
-    limit = 10
-    filtered_wins = apply_filters(@user.wins)      
+    @errors = flash[:errors]
+    limit = 8
+    filtered_wins = apply_filter(@user.wins)      
     session[:total_filtered_wins] = filtered_wins.length;
 
     @pagy, @wins = pagy(filtered_wins, limit: limit, size: 3)
   end
 
   def filter
-    set_custom_categories
     set_custom_date_range
+    set_custom_categories
+    set_sort_by
     redirect_to user_wins_path(@user)
   end
 
@@ -91,7 +93,7 @@ class WinsController < ApplicationController
   end
 
   def win_params
-    params.require(:win).permit(:title, :description, :category, :accomplished_date, :date_start, :date_end)
+    params.require(:win).permit(:title, :description, :category, :accomplished_date, :date_start, :date_end, :sort_by)
   end
 
   def set_win_form_values
@@ -120,15 +122,20 @@ class WinsController < ApplicationController
     session[:categories] = ['kudos', 'learning', 'milestone', 'project', 'other'].select{ |category| params[category] }
   end
 
+  def set_sort_by
+    session[:sort_by] = params[:sort_by] === 'newest first' ? 'desc' : 'asc' 
+  end
+
   def set_default_filter
     session[:date_start] = session[:earliest_win_date]
     session[:date_end] = session[:latest_win_date] 
     session[:categories] = CATEGORIES
+    session[:sort_by] = 'desc'
   end
 
-  def apply_filters(wins)
+  def apply_filter(wins)
     wins.in_range(session[:date_start], session[:date_end])
         .in_category(session[:categories])
-        .order(accomplished_date: :asc, title: :asc)
+        .order(accomplished_date: session[:sort_by], title: :asc)
   end
 end

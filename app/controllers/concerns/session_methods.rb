@@ -8,6 +8,7 @@ module SessionMethods
     session[:date_start] = session[:earliest_win_date]
     session[:date_end] = session[:latest_win_date]
     session[:categories] = ['kudos', 'learning', 'milestone', 'project', 'other']
+    session[:sort_by] = 'desc'
   end
 
   def set_earliest_and_latest_win_dates(wins)    
