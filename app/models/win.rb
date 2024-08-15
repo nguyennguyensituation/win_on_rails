@@ -8,4 +8,8 @@ class Win < ApplicationRecord
   scope :in_range, -> (start_date, end_date) {
     where('accomplished_date >= ? AND accomplished_date <= ?', start_date, end_date)
   }
+
+  scope :in_category, -> (categories) {
+    where(category: categories)
+  }
 end

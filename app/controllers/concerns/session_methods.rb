@@ -7,6 +7,7 @@ module SessionMethods
     session[:username] = user.username.capitalize
     session[:date_start] = session[:earliest_win_date]
     session[:date_end] = session[:latest_win_date]
+    session[:categories] = ['kudos', 'learning', 'milestone', 'project', 'other']
   end
 
   def set_earliest_and_latest_win_dates(wins)    

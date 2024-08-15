@@ -7,30 +7,16 @@ class WinsController < ApplicationController
 
   def index  
     session[:current_page] = params[:page] || 1
-    @categories = ['kudos', 'learning', 'milestone', 'project', 'other']
-    all_wins = @user.wins
+    @categories = CATEGORIES
     limit = 10
-
-    filtered_wins = all_wins.in_range(session[:date_start], session[:date_end])
-                            .order(accomplished_date: :asc, title: :asc)
-
+    filtered_wins = apply_filters(@user.wins)      
     session[:total_filtered_wins] = filtered_wins.length;
 
     @pagy, @wins = pagy(filtered_wins, limit: limit, size: 3)
   end
 
-reference = {
-  "kudos"=>"1",
-  "learning"=>"1",
-  "milestone"=>"1",
-  "project"=>"1",
-  "other"=>"1",
-  "commit"=>"Filter",
-  "controller"=>"wins",
-  "action"=>"filter"
-}
-
   def filter
+    set_custom_categories
     set_custom_date_range
     redirect_to user_wins_path(@user)
   end
@@ -53,7 +39,6 @@ reference = {
       set_earliest_and_latest_win_dates(@user.wins)
       set_default_filter
       redirect_to user_win_path({ user_id: @user.id, id: @win.id }), notice: "#{@win[:title]} added!"
-      # redirect_to user_wins_path(@user), notice: "#{@win[:title]} added!"
     else
       set_win_form_values
       flash[:errors] = @win.errors.full_messages
@@ -99,6 +84,8 @@ reference = {
 
   FIELDS = ['title', 'description', 'category', 'accomplished_date(1i)', 'accomplished_date(2i)', 'accomplished_date(3i)']
 
+  CATEGORIES = ['kudos', 'learning', 'milestone', 'project', 'other']
+
   def set_win
     @win = @user.wins.find(params[:id])
   end
@@ -129,8 +116,19 @@ reference = {
     }
   end
 
+  def set_custom_categories
+    session[:categories] = ['kudos', 'learning', 'milestone', 'project', 'other'].select{ |category| params[category] }
+  end
+
   def set_default_filter
     session[:date_start] = session[:earliest_win_date]
     session[:date_end] = session[:latest_win_date] 
+    session[:categories] = CATEGORIES
+  end
+
+  def apply_filters(wins)
+    wins.in_range(session[:date_start], session[:date_end])
+        .in_category(session[:categories])
+        .order(accomplished_date: :asc, title: :asc)
   end
 end

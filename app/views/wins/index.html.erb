@@ -17,7 +17,7 @@
       <%= form.label :category %>
       <% @categories.each do |category| %>
         <span class="checkbox-option">
-          <%= check_box_tag(category, 1, true) %>
+          <%= check_box_tag(category, 1, session[:categories].include?(category)) %>
           <%= label_tag(category, category) %>
         </span>
       <% end %>
