@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    date.strftime("%d %b %y")
+    date.strftime("%d %b %Y")
   end
 end
