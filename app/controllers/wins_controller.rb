@@ -4,32 +4,16 @@ class WinsController < ApplicationController
 
   before_action :set_user
   before_action :set_win, only: [:show, :edit, :update, :destroy]
+  before_action :set_errors, only: [:new, :edit]
 
   def index  
     session[:current_page] = params[:page] || 1
     @categories = CATEGORIES
-    @errors = flash[:errors]
     limit = 8
     filtered_wins = apply_filter(@user.wins)      
     session[:total_filtered_wins] = filtered_wins.length;
 
     @pagy, @wins = pagy(filtered_wins, limit: limit, size: 3)
-  end
-
-  def filter
-    set_custom_date_range
-    set_custom_categories
-    set_sort_by
-    redirect_to user_wins_path(@user)
-  end
-
-  def reset_filter
-    set_default_filter
-    redirect_to user_wins_path(@user)
-  end
-
-  def new
-    @errors = flash[:errors]
   end
 
   def create
@@ -49,7 +33,6 @@ class WinsController < ApplicationController
   end
 
   def edit
-    @errors = flash[:errors]
     session[:current_win_id] = @win.id;
   end
 
@@ -82,6 +65,18 @@ class WinsController < ApplicationController
     redirect_to user_win_path({ user_id: @user.id, id: @win.id })
   end
 
+  def filter
+    set_custom_date_range
+    set_custom_categories
+    set_sort_by
+    redirect_to user_wins_path(@user)
+  end
+
+  def reset_filter
+    set_default_filter
+    redirect_to user_wins_path(@user)
+  end
+
   private
 
   FIELDS = ['title', 'description', 'category', 'accomplished_date(1i)', 'accomplished_date(2i)', 'accomplished_date(3i)']
@@ -90,6 +85,10 @@ class WinsController < ApplicationController
 
   def set_win
     @win = @user.wins.find(params[:id])
+  end
+
+  def set_errors
+    @errors = flash[:errors]
   end
 
   def win_params

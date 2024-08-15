@@ -1,10 +1,14 @@
 <% if errors %>
   <div role="alert" class="flash" >
     <%= image_tag("clippy-icon.png", alt: "error icon", class: "medium-icon shake")%>
-    <ul>
-    <% errors.each do |error| %>
-      <li><%= error %></li>
+    <% if errors.length > 1 %>
+      <ul>
+        <% errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><%= errors.first %></p>
     <% end %>
-  </ul>
   </div>
 <% end %>
