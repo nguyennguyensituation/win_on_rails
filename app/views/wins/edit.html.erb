@@ -7,7 +7,7 @@
   <%= form.text_area :description, value: session[:description] || @win.description %><br>
 
   <%= form.label :category %>
-  <%= form.select :category, ['kudos', 'learning', 'milestone', 'project', 'other'], selected: session[:category] || @win.category %><br>
+  <%= form.select :category, CATEGORIES, selected: session[:category] || @win.category %><br>
 
   <%= form.label "Date completed" %>
   <%= form.date_select :accomplished_date, options = { order: [:day, :month, :year], use_short_month: true, selected: populate_date || @win.accomplished_date, end_year: Date.today.year }  %><br>

@@ -7,7 +7,7 @@ module SessionMethods
     session[:username] = user.username.capitalize
     session[:date_start] = session[:earliest_win_date]
     session[:date_end] = session[:latest_win_date]
-    session[:categories] = ['kudos', 'learning', 'milestone', 'project', 'other']
+    session[:categories] = CATEGORIES
     session[:sort_by] = 'desc'
   end
 
