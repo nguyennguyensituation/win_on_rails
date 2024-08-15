@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= yield(:head) %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap' %>
@@ -14,14 +15,14 @@
   </head>
 
   <body>
-      <% if flash[:notice] %>
-        <div role="alert" class="flash" >
-          <%= image_tag("success-icon.png", alt: "success icon", class: "medium-icon bounce")%>
-          <p><%= flash[:notice] %></p>
-        </div>
-      <% end %>
+    <% if flash[:notice] %>
+      <div role="alert" class="flash" >
+        <%= image_tag("success-icon.png", alt: "success icon", class: "medium-icon bounce")%>
+        <p><%= flash[:notice] %></p>
+      </div>
+    <% end %>
 
-      <%= render "application/errors", errors: @errors %>
+    <%= render "application/errors", errors: @errors %>
 
     <header>
       <section id="title">
@@ -39,7 +40,8 @@
               <li id="profile-dropdown"><%= image_tag("profile-icon.png", alt: "profile icon", class: "small-icon" ) %><%= session[:username] %></li>   
               <ul class="dropdown-content">
                 <li><%= link_to "My account", my_account_path %></li>
-                <li><%= link_to "Sign out", sessions_path,  method: :delete, data: {
+                <li><%= link_to "Sign out", sessions_path, data: {
+                      turbo: true,
                       turbo_method: :delete,
                       turbo_confirm: "Are you sure you want to sign out?"
                     } %></li> 

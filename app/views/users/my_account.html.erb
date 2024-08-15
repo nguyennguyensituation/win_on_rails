@@ -7,7 +7,8 @@
         <p><b>Username:</b> <%= @user[:username] %></p>
 
         <p><b>Password:</b> <%= format_masked_password(session[:password_length]) %></p>
-        <%= link_to "Delete account", user_path(@user),  method: :delete, data: {
+        <%= link_to "Delete account", user_path(@user), data: {
+                        turbo: true,
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure you want to delete this account?"
                       } %>

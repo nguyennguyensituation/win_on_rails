@@ -11,7 +11,8 @@
 
     <menu>
       <%= link_to "Edit", edit_user_win_path %>
-      <%= link_to "Delete", user_win_path,  method: :delete, data: {
+      <%= link_to "Delete", user_win_path,  data: {
+                        turbo: true,
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure you want to delete this win?"
                       } %>
@@ -19,6 +20,6 @@
   </article>
 </div>
 
-  <nav>
-    <%= link_to "Go back", user_wins_path(page: session[:current_page]) %>
-  </nav>
+<nav>
+  <%= link_to "Go back", user_wins_path(page: session[:current_page]) %>
+</nav>
