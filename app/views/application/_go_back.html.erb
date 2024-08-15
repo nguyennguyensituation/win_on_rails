@@ -1,0 +1,9 @@
+<nav>
+  <%= link_to "Go back", 
+    if session[:user_id]
+      user_wins_path(user_id: session[:user_id], page: session[:current_page]) 
+    else
+      root_path
+    end
+  %>
+</nav>

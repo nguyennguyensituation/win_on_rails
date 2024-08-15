@@ -1,45 +1,41 @@
 <article class="columns-container">
     <h2>My Account</h2>
-    <div class="two-columns">
+    <div class="two-column">
       <section>
         <h3 id="profile">Profile</h3>
-
         <p><b>Username:</b> <%= @user[:username] %></p>
-
         <p><b>Password:</b> <%= format_masked_password(session[:password_length]) %></p>
         <%= link_to "Delete account", user_path(@user), data: {
                         turbo: true,
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure you want to delete this account?"
                       } %>
-        </section>
-        <section>
-          <h3>Stats</h3>
-
-          <table>
-            <thead>
+      </section>
+      
+      <section>
+        <h3>Stats</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Wins</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @categories.each do |name, value| %>
               <tr>
-                <th>Category</th>
-                <th>Wins</th>
+                <td><%= name %></td>
+                <td><%= value %></td>
               </tr>
-            </thead>
-            <tbody>
-              <% @categories.each do |name, value| %>
-                <tr>
-                  <td><%= name %></td>
-                  <td><%= value %></td>
-                </tr>
-              <% end %>
-              <tr>
-                <td><b>Total</b></td>
-                <td><b><%= @total %></b></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+            <% end %>
+            <tr>
+              <td><b>Total</b></td>
+              <td><b><%= @total %></b></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </div>
 </article>
 
-<nav>
-  <%= link_to "Go back", user_path(@user) %>
-</nav>
+<%= render "application/go_back" %>

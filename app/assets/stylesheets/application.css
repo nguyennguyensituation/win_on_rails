@@ -1,6 +1,6 @@
 body {
   font-family: 'Urbanist', sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 1.2px;
 }
 
@@ -34,7 +34,6 @@ a:hover{
 button, input[type=submit] {
   font-family: inherit;
   font-size: 1em;
-  font-weight: 300;
   border-radius: 10px;
   border: solid black 0.75px;
   background-color: transparent;
@@ -169,7 +168,7 @@ main {
   border: solid black 0.75px;
 }
 
-.one-column, .two-columns {
+.one-column, .two-column {
   padding-bottom: 30px;
 }
 
@@ -576,7 +575,7 @@ select {
     line-height: 1.5;
   }
 
-  .two-columns {
+  .two-column {
     display: grid;
     grid-template-columns: 340px 340px;
     grid-column-gap: 20px;
@@ -608,7 +607,7 @@ select {
     width: 1000px;
   }
 
-  .two-columns {
+  .two-column {
     display: grid;
     grid-template-columns: 450px 450px;
     grid-column-gap: 20px;
