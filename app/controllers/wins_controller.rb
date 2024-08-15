@@ -92,7 +92,11 @@ class WinsController < ApplicationController
   end
 
   def win_params
-    params.require(:win).permit(:title, :description, :category, :accomplished_date, :date_start, :date_end, :sort_by)
+    params.require(:win).permit(:title, :description, :category, :accomplished_date)
+  end
+
+  def filter_params
+    params.permit(:sort_by, :kudos, :learning, :milestone, :project, :other, '[date_start(1i)]', '[date_start(2i)]', '[date_start(3i)]', '[date_end(1i)]', '[date_end(2i)]', '[date_end(3i)]')
   end
 
   def set_win_form_values
@@ -108,7 +112,11 @@ class WinsController < ApplicationController
   end
 
   def get_date_filter_values(field)
-    year, month, day = [1, 2, 3].map { |num| params["[#{field}(#{num}i)]"].to_i }
+    year, month, day = [1, 2, 3].map { |num| 
+    puts "=============================>"
+    puts filter_params["[#{field}(#{num}i)]"]
+    filter_params["[#{field}(#{num}i)]"].to_i 
+  }
   end
 
   def set_custom_date_range
@@ -118,11 +126,11 @@ class WinsController < ApplicationController
   end
 
   def set_custom_categories
-    session[:categories] = ['kudos', 'learning', 'milestone', 'project', 'other'].select{ |category| params[category] }
+    session[:categories] = CATEGORIES.select{ |category| filter_params[category] }
   end
 
   def set_sort_by
-    session[:sort_by] = params[:sort_by] === 'newest first' ? 'desc' : 'asc' 
+    session[:sort_by] = filter_params[:sort_by] === 'newest first' ? 'desc' : 'asc' 
   end
 
   def set_default_filter
