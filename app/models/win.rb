@@ -12,4 +12,9 @@ class Win < ApplicationRecord
   scope :in_category, -> (categories) {
     where(category: categories)
   }
+
+  scope :contains_string, -> (string) {
+    where('title LIKE ? OR description LIKE ?', "%" + string + "%", "%" + string + "%")
+  }
 end
+

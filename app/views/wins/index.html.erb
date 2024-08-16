@@ -17,6 +17,11 @@
       <%= form.date_select :date_end, options = { order: [:day, :month, :year], use_short_month: true, selected: Date.parse(session[:date_end]), start_year: Date.today.year - 5, end_year: Date.today.year } %>
     </fieldset>
 
+    <fieldset id="sort-by-filter">
+      <%= form.label :sort_by %>
+      <%= form.select :sort_by, ['newest first', 'oldest first'], selected: populate_sort_by %>
+    </fieldset>
+
     <fieldset id="category-filter">
       <%= form.label :category %>
       <% @categories.each do |category| %>
@@ -27,10 +32,9 @@
       <% end %>
     </fieldset>
 
-    <fieldset id="sort-by-filter">
-      <%= form.label :sort_by %>
-      <%= form.select :sort_by, ['newest first', 'oldest first'], selected: populate_sort_by %>
-
+    <fieldset id="query-filter">
+      <%= form.label :query, "Filter by keyword" %>
+      <%= form.text_field :query %>
     </fieldset>
 
     <%= form.submit "Filter", id: "submit-filter-btn" %>
@@ -42,6 +46,7 @@
 
 <section id="win-summary">
     <p>Results: <%= pluralize(session[:total_filtered_wins], "win") %></p>
+    <p id="query-description"><% if session[:query].length > 1 %>Title or description include: "<%= session[:query] %>"<% end %></p>
     <%= button_to "+ Add win", new_user_win_path(@user), method: :get , id: "add-win-btn" %>
 </section>
 

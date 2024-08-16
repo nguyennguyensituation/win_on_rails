@@ -9,6 +9,7 @@ module SessionMethods
     session[:date_end] = session[:latest_win_date]
     session[:categories] = CATEGORIES
     session[:sort_by] = 'desc'
+    session[:query] = ''
   end
 
   def set_earliest_and_latest_win_dates(wins)    

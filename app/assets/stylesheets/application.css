@@ -132,17 +132,18 @@ header * {
 
 .dropdown-content {
   display: none;
-  position: absolute;
+  background-color: whitesmoke;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  position: fixed;
   z-index: 1;
   right: 10px;
   top: 140px;
-  width: 120px;
-  padding: 5px;
-  background-color: whitesmoke;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   border: solid black 0.75px;
   border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   font-size: 16px;
   text-align: left;
   -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.19), 0px 6px 6px 0px rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -195,8 +196,12 @@ table tr:nth-child(odd) {
 
 #win-summary {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 150px auto auto;
   padding: 20px 0;
+}
+
+#query-description {
+  font-style: italic;
 }
 
 /* WINS FILTER/SUMMARY  */
@@ -224,32 +229,32 @@ table tr:nth-child(odd) {
 #close-filter-btn:hover {
   background-color: inherit;
   color: black;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #filter-container {
-  position: fixed;
+  position: absolute;
   z-index: 1;
+  width: 250px;
   top: 100;
-  left: 0;
+  padding-left: 20px;
   overflow-x: hidden;
-  transition: 0.3s;
-  background-color: whitesmoke;
+  transition: 0.4s ease-in;
   border: solid black 0.75px;
+  background-color: whitesmoke;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
-  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
-  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
 }
 
 .hide {
-  width: 0px;
+  left: -280px;
 }
 
 .show {
-  width: 200px;
-  padding-left: 20px;
+  left: 0;
+  -webkit-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
+  box-shadow: 10px 13px 13px 0px rgba(0,0,0,0.38);
 }
 
 fieldset {
@@ -265,13 +270,18 @@ fieldset {
   padding-left: 0;
 }
 
-#category-filter, #sort-by-filter {
+#category-filter, #sort-by-filter, #query-filter {
   padding-left: 0;
 }
 
 .checkbox-option {
   display: grid;
   grid-template-columns: 25px auto;
+}
+
+#query-filter input[type=text] {
+  width: 200px;
+
 }
 
 #submit-filter-btn {

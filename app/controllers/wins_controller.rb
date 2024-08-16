@@ -67,8 +67,9 @@ class WinsController < ApplicationController
 
   def filter
     set_custom_date_range
-    set_custom_categories
     set_sort_by
+    set_custom_categories
+    set_query
     redirect_to user_wins_path(@user)
   end
 
@@ -96,7 +97,7 @@ class WinsController < ApplicationController
   end
 
   def filter_params
-    params.permit(:sort_by, :kudos, :learning, :milestone, :project, :other, '[date_start(1i)]', '[date_start(2i)]', '[date_start(3i)]', '[date_end(1i)]', '[date_end(2i)]', '[date_end(3i)]')
+    params.permit(:sort_by, :kudos, :learning, :milestone, :project, :other, '[date_start(1i)]', '[date_start(2i)]', '[date_start(3i)]', '[date_end(1i)]', '[date_end(2i)]', '[date_end(3i)]', :query)
   end
 
   def set_win_form_values
@@ -113,8 +114,6 @@ class WinsController < ApplicationController
 
   def get_date_filter_values(field)
     year, month, day = [1, 2, 3].map { |num| 
-    puts "=============================>"
-    puts filter_params["[#{field}(#{num}i)]"]
     filter_params["[#{field}(#{num}i)]"].to_i 
   }
   end
@@ -133,16 +132,22 @@ class WinsController < ApplicationController
     session[:sort_by] = filter_params[:sort_by] === 'newest first' ? 'desc' : 'asc' 
   end
 
+  def set_query
+    session[:query] = Win.sanitize_sql_like(filter_params[:query])
+  end
+
   def set_default_filter
     session[:date_start] = session[:earliest_win_date]
     session[:date_end] = session[:latest_win_date] 
     session[:categories] = CATEGORIES
     session[:sort_by] = 'desc'
+    session[:query] = ''
   end
 
   def apply_filter(wins)
     wins.in_range(session[:date_start], session[:date_end])
         .in_category(session[:categories])
         .order(accomplished_date: session[:sort_by], title: :asc)
+        .contains_string(session[:query])
   end
 end
