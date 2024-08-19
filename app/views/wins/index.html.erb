@@ -24,7 +24,7 @@
 
     <fieldset id="category-filter">
       <%= form.label :category %>
-      <% @categories.each do |category| %>
+      <% CATEGORIES.each do |category| %>
         <span class="checkbox-option">
           <%= check_box_tag(category, 1, session[:categories].include?(category)) %>
           <%= label_tag(category, category) %>

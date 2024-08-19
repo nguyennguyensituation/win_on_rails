@@ -7,11 +7,10 @@ class WinsController < ApplicationController
 
   before_action :set_user
   before_action :set_win, only: %i[show edit update destroy]
-  before_action :set_errors, only: %I[new edit]
+  before_action :set_errors, only: %i[new edit]
 
   def index
     session[:current_page] = params[:page] || 1
-    @categories = CATEGORIES
     limit = 8
     filtered_wins = apply_filter(@user.wins)
     session[:total_filtered_wins] = filtered_wins.length
@@ -88,8 +87,6 @@ class WinsController < ApplicationController
   private
 
   FIELDS = %w[title description category accomplished_date(1i) accomplished_date(2i) accomplished_date(3i)].freeze
-
-  CATEGORIES = %w[kudos learning milestone project other].freeze
 
   def set_win
     @win = @user.wins.find(params[:id])
