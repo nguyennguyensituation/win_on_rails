@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# The Sessions controller contains all CRUD methods for Session objects
 class SessionsController < ApplicationController
   include SessionMethods
 
@@ -5,21 +8,23 @@ class SessionsController < ApplicationController
     @errors = flash[:errors]
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
     @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      set_session_variables(@user)
+    if @user&.authenticate(params[:password])
+      default_session_variables(@user)
       session[:password_length] = params[:password].length
       redirect_to user_wins_path(@user), notice: "Hello, #{session[:username]}!"
-    else  
+    else
       session[:username_entered] = params[:username]
-      flash[:errors] = ["Invalid username or password"]
+      flash[:errors] = ['Invalid username or password']
       redirect_to sign_in_path
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def destroy
     reset_session
-    redirect_to root_path, notice: "You are signed out!"
+    redirect_to root_path, notice: 'You are signed out!'
   end
 end

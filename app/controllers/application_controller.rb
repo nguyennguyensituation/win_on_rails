@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Application Controller
 class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
