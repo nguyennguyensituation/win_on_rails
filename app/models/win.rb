@@ -4,7 +4,7 @@
 class Win < ApplicationRecord
   belongs_to :user
 
-  validates :title, presence: true, length: { minimum: 3, maximum: 30 }
+  validates :title, presence: true, length: { minimum: 3, maximum: 100 }
   validates :description, presence: true, length: { minimum: 3 }
   validates :category, presence: true
 
